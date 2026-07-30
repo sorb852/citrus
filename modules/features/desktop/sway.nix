@@ -16,55 +16,42 @@
         conf = pkgs.writeText "config" ''
           set $Mod Mod4
           set $menu wmenu-run
+
+	  output * bg ${../assets/wallpaper.jpg} fill
+	  output ePD-1 {
+	    mode 1920x1080@144Hz
+	    scale 1
+	  }
           
-          ### Output configuration
-          #
-          # Default wallpaper
-          #output * bg ~/.config/sway/backgrounds/Sway_Wallpaper_Blue_1920x1080.png fill
-          #
-          # Example configuration:
-          #
-          #   output HDMI-A-1 resolution 1920x1080 position 1920,0
-          #
-          # You can get the names of your outputs by running: swaymsg -t get_outputs
+          exec ${lib.getExe pkgs.swayidle} -w \
+                   timeout 300 '${lib.getExe pkgs.swaylock} -f -c 000000' \
+                   timeout 600 'swaymsg "output * power off"' resume 'swaymsg "output * power on"' \
+                   before-sleep '${lib.getExe pkgs.swaylock} -f -c 000000'
+
+	  font Hurmit Nerd Font, 11
+	  default_border pixel 2 # maybe use normal
+
+	  client.focused ${self.theme.base09} ${self.theme.base09} ${self.theme.base00} ${self.theme.base08} ${self.theme.base09}
+	  client.urgent ${self.theme.base08} ${self.theme.base08} ${self.theme.base00} ${self.theme.base08} ${self.theme.base08}
+
+	  client.focused_inactive ${self.theme.base03} ${self.theme.base03} ${self.theme.base06} ${self.theme.base08} ${self.theme.base03}
+	  client.focused_tab_title ${self.theme.base03} ${self.theme.base03} ${self.theme.base06} ${self.theme.base08} ${self.theme.base03}
+	  client.unfocused ${self.theme.base03} ${self.theme.base03} ${self.theme.base06} ${self.theme.base08} ${self.theme.base03}
           
-          ### Idle configuration
-          #
-          # Example configuration:
-          #
-          # exec swayidle -w \
-          #          timeout 300 'swaylock -f -c 000000' \
-          #          timeout 600 'swaymsg "output * power off"' resume 'swaymsg "output * power on"' \
-          #          before-sleep 'swaylock -f -c 000000'
-          #
-          # This will lock your screen after 300 seconds of inactivity, then turn off
-          # your displays after another 300 seconds, and turn your screens back on when
-          # resumed. It will also lock your screen before your computer goes to sleep.
-          
-          ### Input configuration
-          #
-          # Example configuration:
-          #
-          #   input type:touchpad {
-          #       dwt enabled
-          #       tap enabled
-          #       natural_scroll enabled
-          #       middle_emulation enabled
-          #   }
-          #
-          #   input type:keyboard {
-          #       xkb_layout "eu"
-          #   }
-          #
-          # You can also configure each device individually.
-          # Read `man 5 sway-input` for more information about this section.
+          input type:keyboard {
+              xkb_layout "us,mn"
+              xkb_options "grp:alt_shift_toggle"
+          }
+
+	  focus_follows_mouse yes
+	  focus_wrapping no
+	  mode tiled
           
           bindsym $Mod+Return exec ${lib.getExe self.packages.${pkgs.system}.alacritty}
           bindsym $Mod+q kill
           bindsym $Mod+space exec $menu
           bindsym $Mod+Shift+c reload
           
-          # Exit sway (logs you out of your Wayland session)
           bindsym $Mod+Shift+e exec swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' -B 'Yes, exit sway' 'swaymsg exit'
           bindsym $Mod+h focus left
           bindsym $Mod+j focus down
@@ -83,21 +70,12 @@
           bindsym $Mod+4 workspace number 4
           bindsym $Mod+5 workspace number 5
           bindsym $Mod+6 workspace number 6
-          # bindsym $Mod+7 workspace number 7
-          # bindsym $Mod+8 workspace number 8
-          # bindsym $Mod+9 workspace number 9
-          # bindsym $Mod+0 workspace number 10
-          # Move focused container to workspace
           bindsym $Mod+Shift+1 move container to workspace number 1
           bindsym $Mod+Shift+2 move container to workspace number 2
           bindsym $Mod+Shift+3 move container to workspace number 3
           bindsym $Mod+Shift+4 move container to workspace number 4
           bindsym $Mod+Shift+5 move container to workspace number 5
           bindsym $Mod+Shift+6 move container to workspace number 6
-          # bindsym $Mod+Shift+7 move container to workspace number 7
-          # bindsym $Mod+Shift+8 move container to workspace number 8
-          # bindsym $Mod+Shift+9 move container to workspace number 9
-          # bindsym $Mod+Shift+0 move container to workspace number 10
 
           bindsym $Mod+v splith
           bindsym $Mod+s splitv
@@ -127,7 +105,7 @@
           bindsym --locked XF86MonBrightnessDown exec brightnessctl set 5%-
           bindsym --locked XF86MonBrightnessUp exec brightnessctl set 5%+
           
-          # Special key to take a screenshot with grim
+          # TODO: specialize
           bindsym Print exec grim
           
           #
@@ -152,8 +130,11 @@
       {
         inherit pkgs;
         package = pkgs.sway;
+	runtimePkgs = [ pkgs.grim ];
+
         flags = {
           "--config" = conf;
+	  "--unsupported-gpu" = true;
         };
 
         passthru = (pkgs.sway.passthru or { }) // {
