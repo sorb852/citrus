@@ -10,7 +10,6 @@
   perSystem = { pkgs, ... }: {
     packages.alacritty = inputs.wrappers.wrappers.alacritty.wrap {
       inherit pkgs;
-      runtimePkgs = [ pkgs.nerd-fonts.hurmit ];
 
       settings = {
         window = {

@@ -40,12 +40,12 @@
                 {
                   type = "git";
                   style = "plain";
-                  foreground = "${self.theme.base00}";
-                  background = "${self.theme.base0C}";
+                  foreground = "${self.theme.base0C}";
+                  background = "${self.theme.base03}";
                   options = {
                     branch_icon = "";
                   };
-                  template = " {{ .HEAD }} ";
+                  template = " {{ .HEAD }}";
                 }
                 {
                   type = "path";

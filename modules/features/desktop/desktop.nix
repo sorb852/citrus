@@ -1,7 +1,9 @@
 { self, ... }:
 
 {
-  flake.nixosModules.desktop = {
+  flake.nixosModules.desktop = { pkgs, ... }: {
+    fonts.packages = [ pkgs.nerd-fonts.hurmit ];
+
     imports = [
       self.nixosModules.music
       self.nixosModules.alacritty

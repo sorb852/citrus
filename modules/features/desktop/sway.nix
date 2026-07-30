@@ -9,12 +9,12 @@
     };
   };
 
-  perSystem = { pkgs, ... }: {
+  perSystem = { lib, pkgs, ... }: {
     packages.sway = inputs.wrappers.lib.wrapPackage (
       { ... }:
       let
         conf = pkgs.writeText "config" ''
-          set $mod Mod4
+          set $Mod Mod4
           set $menu wmenu-run
           
           ### Output configuration
@@ -59,98 +59,94 @@
           # You can also configure each device individually.
           # Read `man 5 sway-input` for more information about this section.
           
-          ### Key bindings
-          #
-          # Basics:
-          #
-              bindsym $mod+Return exec ${self.packages.${pkgs.system}.alacritty}
-              bindsym $mod+q kill
-              bindsym $mod+d exec $menu
-              bindsym $mod+Shift+c reload
+          bindsym $Mod+Return exec ${lib.getExe self.packages.${pkgs.system}.alacritty}
+          bindsym $Mod+q kill
+          bindsym $Mod+space exec $menu
+          bindsym $Mod+Shift+c reload
           
-              # Exit sway (logs you out of your Wayland session)
-              bindsym $mod+Shift+e exec swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' -B 'Yes, exit sway' 'swaymsg exit'
-              bindsym $mod+h focus left
-              bindsym $mod+j focus down
-              bindsym $mod+k focus up
-              bindsym $mod+l focus right
+          # Exit sway (logs you out of your Wayland session)
+          bindsym $Mod+Shift+e exec swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' -B 'Yes, exit sway' 'swaymsg exit'
+          bindsym $Mod+h focus left
+          bindsym $Mod+j focus down
+          bindsym $Mod+k focus up
+          bindsym $Mod+l focus right
           
-              bindsym $mod+Shift+h move left
-              bindsym $mod+Shift+j move down
-              bindsym $mod+Shift+k move up
-              bindsym $mod+Shift+l move right
+          bindsym $Mod+Alt+h move left
+          bindsym $Mod+Alt+j move down
+          bindsym $Mod+Alt+k move up
+          bindsym $Mod+Alt+l move right
 
-              # Switch to workspace
-              bindsym $mod+1 workspace number 1
-              bindsym $mod+2 workspace number 2
-              bindsym $mod+3 workspace number 3
-              bindsym $mod+4 workspace number 4
-              bindsym $mod+5 workspace number 5
-              bindsym $mod+6 workspace number 6
-              # bindsym $mod+7 workspace number 7
-              # bindsym $mod+8 workspace number 8
-              # bindsym $mod+9 workspace number 9
-              # bindsym $mod+0 workspace number 10
-              # Move focused container to workspace
-              bindsym $mod+Shift+1 move container to workspace number 1
-              bindsym $mod+Shift+2 move container to workspace number 2
-              bindsym $mod+Shift+3 move container to workspace number 3
-              bindsym $mod+Shift+4 move container to workspace number 4
-              bindsym $mod+Shift+5 move container to workspace number 5
-              bindsym $mod+Shift+6 move container to workspace number 6
-              # bindsym $mod+Shift+7 move container to workspace number 7
-              # bindsym $mod+Shift+8 move container to workspace number 8
-              # bindsym $mod+Shift+9 move container to workspace number 9
-              # bindsym $mod+Shift+0 move container to workspace number 10
+          # Switch to workspace
+          bindsym $Mod+1 workspace number 1
+          bindsym $Mod+2 workspace number 2
+          bindsym $Mod+3 workspace number 3
+          bindsym $Mod+4 workspace number 4
+          bindsym $Mod+5 workspace number 5
+          bindsym $Mod+6 workspace number 6
+          # bindsym $Mod+7 workspace number 7
+          # bindsym $Mod+8 workspace number 8
+          # bindsym $Mod+9 workspace number 9
+          # bindsym $Mod+0 workspace number 10
+          # Move focused container to workspace
+          bindsym $Mod+Shift+1 move container to workspace number 1
+          bindsym $Mod+Shift+2 move container to workspace number 2
+          bindsym $Mod+Shift+3 move container to workspace number 3
+          bindsym $Mod+Shift+4 move container to workspace number 4
+          bindsym $Mod+Shift+5 move container to workspace number 5
+          bindsym $Mod+Shift+6 move container to workspace number 6
+          # bindsym $Mod+Shift+7 move container to workspace number 7
+          # bindsym $Mod+Shift+8 move container to workspace number 8
+          # bindsym $Mod+Shift+9 move container to workspace number 9
+          # bindsym $Mod+Shift+0 move container to workspace number 10
 
-              bindsym $mod+v splith
-              bindsym $mod+s splitv
-              bindsym $mod+f fullscreen
-              bindsym $mod+Shift+space floating toggle
-              bindsym $mod+Alt+space focus mode_toggle
+          bindsym $Mod+v splith
+          bindsym $Mod+s splitv
+          bindsym $Mod+f fullscreen
+          bindsym $Mod+Shift+space floating toggle
+          bindsym $Mod+Alt+space focus mode_toggle
 
-              bindsym $mod+Shift+minus move scratchpad
-              bindsym $mod+minus scratchpad show
+          bindsym $Mod+Shift+minus move scratchpad
+          bindsym $Mod+minus scratchpad show
 
-              bindsym h resize shrink width 10px
-              bindsym j resize grow height 10px
-              bindsym k resize shrink height 10px
-              bindsym l resize grow width 10px
+          bindsym $Mod+Shift+h resize shrink width 10px
+          bindsym $Mod+Shift+j resize grow height 10px
+          bindsym $Mod+Shift+k resize shrink height 10px
+          bindsym $Mod+Shift+l resize grow width 10px
 
-              bindsym --locked XF86AudioMicMute exec wpctl set-mute @DEFAULT_SOURCE@ toggle
-              bindsym --locked XF86AudioMute exec pactl set-mute @DEFAULT_SINK@ toggle
-              bindsym --locked XF86AudioLowerVolume exec wpctl set-volume @DEFAULT_SINK@ 5%-
-              bindsym --locked XF86AudioRaiseVolume exec wpctl set-volume @DEFAULT_SINK@ 5%+
-              
-              bindsym --locked XF86AudioPlay exec playerctl play-pause
-              bindsym --locked XF86AudioPause exec playerctl play-pause
-              bindsym --locked XF86AudioPrev exec playerctl previous
-              bindsym --locked XF86AudioNext exec playerctl next
-              bindsym --locked XF86AudioStop exec playerctl stop
-              
-              bindsym --locked XF86MonBrightnessDown exec brightnessctl set 5%-
-              bindsym --locked XF86MonBrightnessUp exec brightnessctl set 5%+
-              
-              # Special key to take a screenshot with grim
-              bindsym Print exec grim
-              
-              #
-              # Status Bar:
-              #
-              # Read `man 5 sway-bar` for more information about this section.
-              bar {
-                  position top
-              
-                  # When the status_command prints a new line to stdout, swaybar updates.
-                  # The default just shows the current date and time.
-                  status_command while date +'%Y-%m-%d %X'; do sleep 1; done
-              
-                  colors {
-                      statusline #ffffff
-                      background #323232
-                      inactive_workspace #32323200 #32323200 #5c5c5c
-                  }
+          bindsym --locked XF86AudioMicMute exec wpctl set-mute @DEFAULT_SOURCE@ toggle
+          bindsym --locked XF86AudioMute exec pactl set-mute @DEFAULT_SINK@ toggle
+          bindsym --locked XF86AudioLowerVolume exec wpctl set-volume @DEFAULT_SINK@ 5%-
+          bindsym --locked XF86AudioRaiseVolume exec wpctl set-volume @DEFAULT_SINK@ 5%+
+          
+          bindsym --locked XF86AudioPlay exec playerctl play-pause
+          bindsym --locked XF86AudioPause exec playerctl play-pause
+          bindsym --locked XF86AudioPrev exec playerctl previous
+          bindsym --locked XF86AudioNext exec playerctl next
+          bindsym --locked XF86AudioStop exec playerctl stop
+          
+          bindsym --locked XF86MonBrightnessDown exec brightnessctl set 5%-
+          bindsym --locked XF86MonBrightnessUp exec brightnessctl set 5%+
+          
+          # Special key to take a screenshot with grim
+          bindsym Print exec grim
+          
+          #
+          # Status Bar:
+          #
+          # Read `man 5 sway-bar` for more information about this section.
+          bar {
+              position top
+          
+              # When the status_command prints a new line to stdout, swaybar updates.
+              # The default just shows the current date and time.
+              status_command while date +'%Y-%m-%d %X'; do sleep 1; done
+          
+              colors {
+                  statusline #ffffff
+                  background #323232
+                  inactive_workspace #32323200 #32323200 #5c5c5c
               }
+          }
         '';
       in
       {

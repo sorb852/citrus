@@ -14,7 +14,6 @@
         PAGER = "${lib.getExe pkgs.bat}";
       };
 
-      # TODO: ykw js wrapp all these
       environment.systemPackages = [
         pkgs.wget
         pkgs.curl
@@ -26,7 +25,7 @@
         pkgs.devenv
         pkgs.file
         pkgs.tldr
-        pkgs.fastfetch # TODO: Make seperate
+	pkgs.wl-clipboard
         pkgs.ripgrep
         pkgs.fd
         pkgs.jq
@@ -34,6 +33,7 @@
         pkgs.yt-dlp
         pkgs.eza
 	pkgs.neovim
+        pkgs.fastfetch # TODO: Make seperate
       ];
 
       programs = {
