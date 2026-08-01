@@ -17,8 +17,8 @@
           mini-files
           mini-pick
           lazygit-nvim
-          base16-nvim
           nvim-colorizer-lua
+          base16-nvim
           lualine-nvim
         ];
         config = "require('init')";

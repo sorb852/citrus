@@ -21,7 +21,6 @@ vim.opt.grepprg = "rg"
 vim.opt.clipboard = 'unnamedplus'
 
 vim.g.mapleader = ' '
-vim.cmd('colorscheme retrobox')
 
 -- === yank highlight ===
 vim.api.nvim_create_autocmd('TextYankPost', {
@@ -99,31 +98,24 @@ require('mini.files').setup({
 
 require('colorizer').setup()
 
-
--- <<< START FLAVOURS >>>
--- Citrus scheme by sorb852
---
--- lowk js a cheat
-
 require('base16-colorscheme').setup({
-    base00 = '#0e1014',
-    base01 = '#282a2d',
-    base02 = '#424547',
-    base03 = '#5c5f60',
-    base04 = '#77797a',
-    base05 = '#919393',
-    base06 = '#abaead',
-    base07 = '#c5c8c6',
-    base08 = '#ff700f',
-    base09 = '#f9a824',
-    base0A = '#fdd41d',
-    base0B = '#ceff1f',
-    base0C = '#1fff57',
-    base0D = '#1fff75',
-    base0E = '#d8466f',
-    base0F = '#ea3458',
+    base00 = "#0e1014",
+    base01 = "#282a2d",
+    base02 = "#424547",
+    base03 = "#5c5f60",
+    base04 = "#77797a",
+    base05 = "#919393",
+    base06 = "#abaead",
+    base07 = "#c5c8c6",
+    base08 = "#ff700f",
+    base09 = "#f9a824",
+    base0A = "#fdd41d",
+    base0B = "#ceff1f",
+    base0C = "#1fff57",
+    base0D = "#1fff75",
+    base0E = "#d8466f",
+    base0F = "#ea3458"
 })
--- <<< END FLAVOURS >>>
 
 local default_cols = { fg = require('base16-colorscheme').colors.base07, bg = require('base16-colorscheme').colors.base01 }
 local line = {
@@ -156,4 +148,3 @@ require('lualine').setup({
     lualine_z = {'filename'}
   }
 })
-
