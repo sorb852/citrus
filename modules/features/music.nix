@@ -355,7 +355,7 @@
                 )
               ),
               album_art: (
-                method: Kitty,
+                method: Block,
                 vertical_align: Center,
                 horizontal_align: Center,
               ),
@@ -455,7 +455,7 @@
         {
           inherit pkgs;
           package = pkgs.rmpc;
-          runtimePkgs = [ pkgs.cava ];
+          runtimePkgs = [ pkgs.cava pkgs.ueberzugpp ];
           flags = {
             "--config" = "${config}/config/config.ron";
           };
