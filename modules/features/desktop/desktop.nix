@@ -6,7 +6,7 @@
 
     imports = [
       self.nixosModules.music
-      self.nixosModules.alacritty
+      self.nixosModules.foot
       self.nixosModules.sway
       self.nixosModules.qutebrowser
     ];

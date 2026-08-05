@@ -47,7 +47,7 @@
           	        focus_wrapping no
           	        mode tiled
                     
-                    bindsym $Mod+Return exec ${lib.getExe self.packages.${pkgs.system}.alacritty}
+                    bindsym $Mod+Return exec ${lib.getExe self.packages.${pkgs.system}.foot}
                     bindsym $Mod+q kill
                     bindsym $Mod+space exec $menu
                     bindsym $Mod+Shift+c reload
