@@ -1,6 +1,10 @@
 { self, inputs, ... }:
 
 {
+  flake.nixosModules.qutebrowser = { pkgs, ... }: {
+    environment.systemPackages = [ self.packages.${pkgs.system}.qutebrowser ];
+  };
+
   perSystem = { pkgs, ... }: {
     packages.qutebrowser = inputs.wrappers.lib.wrapPackage (
       { ... }:

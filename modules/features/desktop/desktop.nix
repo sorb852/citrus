@@ -8,6 +8,7 @@
       self.nixosModules.music
       self.nixosModules.alacritty
       self.nixosModules.sway
+      self.nixosModules.qutebrowser
     ];
   };
 }
