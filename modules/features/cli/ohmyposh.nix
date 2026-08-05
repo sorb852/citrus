@@ -1,7 +1,8 @@
 { inputs, self, ... }:
 
 {
-  flake.nixosModules.ohmyposh = { lib, pkgs, ... }: 
+  flake.nixosModules.ohmyposh =
+    { lib, pkgs, ... }:
     let
       selfpkgs = self.packages.${pkgs.system};
     in
@@ -52,7 +53,7 @@
                   style = "plain";
                   foreground = "${self.theme.base07}";
                   background = "${self.theme.base03}";
-		  template = " {{ .Path }} ";
+                  template = " {{ .Path }} ";
                 }
                 {
                   type = "text";
@@ -63,18 +64,6 @@
                 }
               ];
             }
-	    {
-	      type = "prompt";
-	      alignment = "right";
-	      segment = [
-	        {
-		  type = "nix-shell";
-		  style = "plain";
-		  foreground = "${self.theme.base0D}";
-		  template = "(nix:{{ .Type }})";
-		}
-	      ];
-	    }
           ];
         }
       );
