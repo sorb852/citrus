@@ -1,6 +1,12 @@
 { inputs, ... }:
 {
-  flake.nixosModules.JuicyHardware = { config, lib, modulesPath, ... }:
+  flake.nixosModules.JuicyHardware =
+    {
+      config,
+      lib,
+      modulesPath,
+      ...
+    }:
     {
       # === ORIGINAL HARDWARECONFIG.nix
       imports = [
@@ -49,10 +55,13 @@
         enable32Bit = true;
       };
 
-      services.xserver.videoDrivers = [ "nvidia" "nouveau" ];
+      services.xserver.videoDrivers = [
+        "nvidia"
+        "nouveau"
+      ];
       hardware.nvidia = {
         modesetting.enable = true;
-	nvidiaSettings = true;
+        nvidiaSettings = true;
         open = lib.mkForce true;
       };
     };

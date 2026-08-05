@@ -2,6 +2,14 @@
 { self, inputs, ... }:
 
 {
+  flake.nixosModules.nvf = { pkgs, ... }: {
+    environment.sessionVariables = {
+      EDITOR = "nvim";
+      MANPAGER = "nvim +Man!";
+    };
+    environment.systemPackages = [ self.packages.${pkgs.system}.nvf ];
+  };
+
   perSystem = { pkgs, ... }: {
     packages.nvf =
       (inputs.nvf.lib.neovimConfiguration {

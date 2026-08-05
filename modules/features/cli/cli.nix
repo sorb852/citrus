@@ -8,6 +8,7 @@
         self.nixosModules.tmux
         self.nixosModules.shell
         self.nixosModules.ohmyposh
+        self.nixosModules.nvf
       ];
 
       environment.sessionVariables = {
@@ -25,14 +26,13 @@
         pkgs.devenv
         pkgs.file
         pkgs.tldr
-	pkgs.wl-clipboard
+        pkgs.wl-clipboard
         pkgs.ripgrep
         pkgs.fd
         pkgs.jq
         pkgs.btop
         pkgs.yt-dlp
         pkgs.eza
-	pkgs.neovim
         pkgs.fastfetch # TODO: Make seperate
       ];
 

@@ -130,7 +130,7 @@
 
         flags = {
           "--config" = conf;
-          # "--unsupported-gpu" = true;
+          "--unsupported-gpu" = true;
         };
 
         passthru = (pkgs.sway.passthru or { }) // {
