@@ -134,7 +134,7 @@
               preview_label_style: (fg: "${self.theme.base0F}"),
               preview_metadata_group_style: (fg: "${self.theme.base09}"),
               tab_bar: (
-                active_style: (fg: "${self.theme.base01}", bg: "${self.theme.base01}"),
+                active_style: (fg: "${self.theme.base01}", bg: "${self.theme.base07}"),
                 inactive_style: (fg: "${self.theme.base07}"),
               ),
               highlighted_item_style: (bg: "${self.theme.base00}", fg: "${self.theme.base08}"),
@@ -283,11 +283,11 @@
             	        ),
             	      ],
             	      right: [
-            	        (kind: Property(Status(RepeatV2(on_label: "󰑖", off_label: "󰑖", on_style: (fg: "${self.theme.base08}"), on_off: (fg: "#5e6387"))))),
+            	        (kind: Property(Status(RepeatV2(on_label: "󰑖", off_label: "󰑖", on_style: (fg: "${self.theme.base08}"), on_off: (fg: "${self.theme.base03}"))))),
             	        (kind: Text(" / "), style: (fg: "${self.theme.base07}")),
-            	        (kind: Property(Status(RandomV2(on_label: "󰒟", off_label: "󰒟", on_style: (fg: "${self.theme.base09}"), on_off: (fg: "#5e6387"))))),
+            	        (kind: Property(Status(RandomV2(on_label: "󰒟", off_label: "󰒟", on_style: (fg: "${self.theme.base09}"), on_off: (fg: "${self.theme.base03}"))))),
             	        (kind: Text(" / "), style: (fg: "${self.theme.base07}")),
-            	        (kind: Property(Status(SingleV2(on_label: "󰎄", off_label: "󰎄", on_style: (fg: "${self.theme.base0A}"), on_off: (fg: "#5e6387"))))),
+            	        (kind: Property(Status(SingleV2(on_label: "󰎄", off_label: "󰎄", on_style: (fg: "${self.theme.base0A}"), on_off: (fg: "${self.theme.base03}"))))),
             	        // (kind: Text(" / Vol at "), style: (fg: "${self.theme.base07}")),
             	        (kind: Text(" / "), style: (fg: "${self.theme.base07}")),
             	        (kind: Property(Status(Volume)), style: (fg: "${self.theme.base0D}")),
