@@ -43,11 +43,11 @@
               swapfile = false;
               wrap = false;
               grepprg = "rg";
-              # clipboard = "unnamedplus";
             };
             # look, youll never know if id be using sway or bspwm tomorrow
             vim.clipboard = {
               enable = true;
+              registers = "unnamedplus";
               providers.wl-copy.enable = true;
               # providers.xclip.enable = true;
             };
