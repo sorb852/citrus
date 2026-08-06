@@ -11,11 +11,11 @@
 
   perSystem = { lib, pkgs, ... }: {
     packages.sway = inputs.wrappers.lib.wrapPackage (
-      { ... }:
       let
+        fixColor = col: lib.strings.removePrefix "#" col;
         conf = pkgs.writeText "config" ''
                     set $Mod Mod4
-                    set $menu wmenu-run
+                    set $menu ${lib.getExe' pkgs.wmenu "wmenu-run"} -p [RUN] -f "Hurmit Nerd Font Normal 11" -N ${fixColor self.theme.base01} -n ${fixColor self.theme.base07} -M ${fixColor self.theme.base09} -m ${fixColor self.theme.base01} -S ${fixColor self.theme.base09} -s ${fixColor self.theme.base01}
 
           	        output * bg ${../assets/wallpaper.jpg} fill
           	        output ePD-1 {
