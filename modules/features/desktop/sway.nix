@@ -52,7 +52,7 @@
                     bindsym $Mod+space exec $menu
                     bindsym $Mod+Shift+c reload
                     
-                    bindsym $Mod+Shift+e exec swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' -B 'Yes, exit sway' 'swaymsg exit'
+                    bindsym $Mod+Shift+e exec swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' -B 'Yes, exit sway' 'swaymsg exit' --background ${fixColor self.theme.base08} --border ${fixColor self.theme.base09} --border-bottom ${fixColor self.theme.base09} --button-background ${fixColor self.theme.base09} --text ${fixColor self.theme.base00} --button-text ${fixColor self.theme.base00} --border-bottom-size 0
                     bindsym $Mod+h focus left
                     bindsym $Mod+j focus down
                     bindsym $Mod+k focus up
