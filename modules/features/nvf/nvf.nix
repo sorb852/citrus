@@ -43,6 +43,7 @@
               swapfile = false;
               wrap = false;
               grepprg = "rg";
+              showmode = false;
             };
             # look, youll never know if id be using sway or bspwm tomorrow
             vim.clipboard = {
@@ -158,7 +159,7 @@
                 a = [ ];
                 b = [ ];
                 c = [ ];
-                x = [ "'filetype'" ];
+                x = [ ];
                 y = [ "'filename'" ];
                 z = [ ];
               };
@@ -292,6 +293,7 @@
               nix.enable = true;
               go.enable = true;
               zig.enable = true;
+              python.enable = true;
             };
           })
           {

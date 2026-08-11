@@ -10,6 +10,17 @@
   };
 
   perSystem = { lib, pkgs, ... }: {
+    packages.nikocursors = pkgs.stdenv.mkDerivation {
+      name = "niko-oneshot-cursors";
+      src = ../assets/nikocursors;
+      # dontBuild = true;
+      installPhase = ''
+        runHook preInstall
+        mkdir -p $out/share/icons/niko-oneshot-cursors
+        cp -r . $out/share/icons/niko-oneshot-cursors
+        runHook postInstall
+      '';
+    };
     packages.sway = inputs.wrappers.lib.wrapPackage (
       let
         fixColor = col: lib.strings.removePrefix "#" col;
@@ -22,6 +33,12 @@
           	          mode 1920x1080@144Hz
           	          scale 1
           	        }
+
+                    seat * xcursor_theme niko-oneshot-cursors 24
+                    exec_always {
+                      gsettings set org.gnome.desktop.interface cursor-theme 'niko-oneshot-cursors'
+                      gsettings set org.gnome.desktop.interface cursor-size 24
+                    }
                           
                     exec ${lib.getExe pkgs.swayidle} -w \
                          timeout 300 '${lib.getExe pkgs.swaylock} -f -c 000000' \
@@ -92,7 +109,7 @@
                     bindsym $Mod+Shift+l resize grow width 10px
 
                     bindsym --locked XF86AudioMicMute exec wpctl set-mute @DEFAULT_SOURCE@ toggle
-                    bindsym --locked XF86AudioMute exec pactl set-mute @DEFAULT_SINK@ toggle
+                    bindsym --locked XF86AudioMute exec wpctl set-mute @DEFAULT_SINK@ toggle
                     bindsym --locked XF86AudioLowerVolume exec wpctl set-volume @DEFAULT_SINK@ 5%-
                     bindsym --locked XF86AudioRaiseVolume exec wpctl set-volume @DEFAULT_SINK@ 5%+
                     
@@ -126,11 +143,25 @@
       {
         inherit pkgs;
         package = pkgs.sway;
-        runtimePkgs = [ pkgs.grim ];
+        runtimePkgs = [
+          pkgs.grim
+          pkgs.wireplumber
+          pkgs.playerctl
+          pkgs.brightnessctl
+
+          pkgs.glib
+          self.packages.${pkgs.system}.nikocursors
+        ];
 
         flags = {
           "--config" = conf;
           "--unsupported-gpu" = true;
+        };
+
+        env = {
+          XCURSOR_THEME = "niko-oneshot-cursors";
+          XCURSOR_SIZE = "24";
+          XCURSOR_PATH = "${self.packages.${pkgs.system}.nikocursors}/share/icons";
         };
 
         passthru = (pkgs.sway.passthru or { }) // {

@@ -16,7 +16,10 @@
         inherit pkgs;
 
         settings = {
-          main.font = "Hurmit Nerd Font:size=11";
+          main = {
+            font = "Hurmit Nerd Font:size=11";
+            shell = "tmux";
+          };
 
           "colors-dark" = {
             cursor = "${fixColor self.theme.base00} ${fixColor self.theme.base05}";

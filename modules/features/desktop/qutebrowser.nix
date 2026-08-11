@@ -332,6 +332,7 @@
           c.statusbar.position = "bottom"
           c.tabs.background = False
           c.tabs.position = "left"
+          c.tabs.title.elide = "none"
 
           c.qt.args = ["disable-accelerated-video-decode"] # had to do because of some bug
         '';

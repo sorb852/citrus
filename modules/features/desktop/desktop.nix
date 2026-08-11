@@ -8,6 +8,7 @@
       self.nixosModules.music
       self.nixosModules.foot
       self.nixosModules.sway
+      self.nixosModules.gaming
       self.nixosModules.qutebrowser
     ];
   };
