@@ -14,7 +14,7 @@
       name = "niko-oneshot-cursors";
       src = ../assets/nikocursors;
       # dontBuild = true;
-      installPhase = ''
+      installPhase = /* bash */ ''
         runHook preInstall
         mkdir -p $out/share/icons/niko-oneshot-cursors
         cp -r . $out/share/icons/niko-oneshot-cursors
@@ -139,6 +139,16 @@
                     #   }
                     # }
         '';
+        x11fallbackIndex = pkgs.writeTextFile {
+          name = "x11-nikocursors-fallback";
+          destination = "/share/icons/default/index.theme";
+          text = ''
+            [Icon Theme]
+            Name=Default
+            Comment=Default Cursor Theme
+            Inherits=niko-oneshot-cursors
+          '';
+        };
       in
       {
         inherit pkgs;
@@ -161,7 +171,7 @@
         env = {
           XCURSOR_THEME = "niko-oneshot-cursors";
           XCURSOR_SIZE = "24";
-          XCURSOR_PATH = "${self.packages.${pkgs.system}.nikocursors}/share/icons";
+          XCURSOR_PATH = "${self.packages.${pkgs.system}.nikocursors}/share/icons:${x11fallbackIndex}/share/icons:";
         };
 
         passthru = (pkgs.sway.passthru or { }) // {
