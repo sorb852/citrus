@@ -16,6 +16,12 @@ ShellRoot {
         implicitHeight: 32
         color: Colors.base01
 
+        Modules.Workspaces {
+            anchors.top: parent.top
+            anchors.bottom: parent.bottom
+            anchors.left: parent.left
+        }
+
         Modules.Clock {
             id: clock
             anchors.top: parent.top
