@@ -1,87 +1,107 @@
 import QtQuick
 import QtQuick.Layouts
+import Quickshell
 import Quickshell.I3
 import qs.services
 
-RowLayout {
+Item {
     id: root
     property int eventCount: 0 // Only here for reactivity
 
+    PersistentProperties {
+        id: persist
+        reloadableId: "persistedStates"
+        property bool init: false
+    }
+
     Connections {
         target: I3
+
         function onRawEvent(event) {
+            if (event.type === "get_workspaces")
+                persist.init = true;
             if (["workspace", "window"].includes(event.type))
                 root.eventCount++;
         }
     }
 
-    spacing: 0
+    Loader {
+        id: loader
+        anchors.fill: parent
+        active: persist.init
 
-    Repeater {
-        model: 6
+        sourceComponent: RowLayout {
+            anchors.fill: parent
+            spacing: 0
 
-        delegate: Rectangle {
-            id: unit
-            required property var index
+            Repeater {
+                model: 6
 
-            property string name: String(index + 1)
-            property I3Workspace workspace: {
-                const _OHSWEETLOVEOFREACTION = root.eventCount;
-                return I3.findWorkspaceByName(name);
-            }
+                delegate: Rectangle {
+                    id: unit
+                    required property var index
 
-            property bool workspaceExists: workspace !== null
-
-            implicitWidth: height
-            Layout.fillHeight: true
-
-            color: {
-                if (mouseArea.containsMouse || (workspaceExists && workspace.focused))
-                    return Colors.base02;
-                return Colors.base01;
-            }
-
-            MouseArea {
-                id: mouseArea
-                anchors.fill: parent
-                hoverEnabled: true
-                onPressed: I3.dispatch(`workspace number ${unit.name}`)
-            }
-
-            ColumnLayout {
-                anchors.fill: parent
-                spacing: 0
-
-                Rectangle {
-                    opacity: mouseArea.containsMouse || (unit.workspaceExists && unit.workspace.focused) ? 1 : 0
-                    color: {
-                        if (unit.workspaceExists && unit.workspace.focused)
-                            return Colors.base09;
-                        return Colors.base0A;
+                    property string name: String(index + 1)
+                    property I3Workspace workspace: {
+                        const _OHSWEETLOVEOFREACTION = root.eventCount;
+                        return I3.findWorkspaceByName(name);
                     }
+                    Component.onCompleted: console.log(`Workspace ${name} with val ${workspace}`)
 
-                    Layout.fillWidth: true
-                    Layout.preferredHeight: 3
-                }
+                    property bool workspaceExists: workspace !== null
 
-                Item {
-                    Layout.fillWidth: true
+                    implicitWidth: height
                     Layout.fillHeight: true
 
-                    Text {
-                        anchors.centerIn: parent
+                    color: {
+                        if (mouseArea.containsMouse || (workspaceExists && workspace.focused))
+                            return Colors.base02;
+                        return Colors.base01;
+                    }
 
-                        text: unit.name
-                        color: {
-                            if (unit.workspaceExists && unit.workspace.focused)
-                                return Colors.base09;
-                            if (mouseArea.containsMouse)
+                    MouseArea {
+                        id: mouseArea
+                        anchors.fill: parent
+                        hoverEnabled: true
+                        onPressed: I3.dispatch(`workspace number ${unit.name}`)
+                    }
+
+                    ColumnLayout {
+                        anchors.fill: parent
+                        spacing: 0
+
+                        Rectangle {
+                            opacity: mouseArea.containsMouse || (unit.workspaceExists && unit.workspace.focused) ? 1 : 0
+                            color: {
+                                if (unit.workspaceExists && unit.workspace.focused)
+                                    return Colors.base09;
                                 return Colors.base0A;
-                            if (unit.workspaceExists)
-                                return Colors.base07;
-                            return Colors.base03;
+                            }
+
+                            Layout.fillWidth: true
+                            Layout.preferredHeight: 3
                         }
-                        font.pixelSize: 16
+
+                        Item {
+                            Layout.fillWidth: true
+                            Layout.fillHeight: true
+
+                            Text {
+                                anchors.centerIn: parent
+
+                                text: unit.name
+                                color: {
+                                    if (unit.workspaceExists && unit.workspace.focused)
+                                        return Colors.base09;
+                                    if (mouseArea.containsMouse)
+                                        return Colors.base0A;
+                                    if (unit.workspaceExists)
+                                        return Colors.base07;
+                                    return Colors.base03;
+                                }
+                                font.pixelSize: 16
+                            }
+                        }
                     }
                 }
             }
