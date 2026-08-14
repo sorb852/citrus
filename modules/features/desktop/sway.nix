@@ -28,53 +28,53 @@
                     set $Mod Mod4
                     set $menu ${lib.getExe' pkgs.wmenu "wmenu-run"} -p [RUN] -f "Hurmit Nerd Font Normal 11" -N ${fixColor self.theme.base01} -n ${fixColor self.theme.base07} -M ${fixColor self.theme.base09} -m ${fixColor self.theme.base01} -S ${fixColor self.theme.base09} -s ${fixColor self.theme.base01}
 
-          	        output * bg ${../assets/wallpaper.jpg} fill
-          	        output ePD-1 {
-          	          mode 1920x1080@144Hz
-          	          scale 1
-          	        }
+                    output * bg ${../assets/wallpaper.jpg} fill
+                    output ePD-1 {
+                      mode 1920x1080@144Hz
+                      scale 1
+                    }
 
                     seat * xcursor_theme niko-oneshot-cursors 24
                     exec_always {
                       gsettings set org.gnome.desktop.interface cursor-theme 'niko-oneshot-cursors'
                       gsettings set org.gnome.desktop.interface cursor-size 24
                     }
-                          
+
                     exec ${lib.getExe pkgs.swayidle} -w \
                          timeout 300 '${lib.getExe pkgs.swaylock} -f -c 000000' \
                          timeout 600 'swaymsg "output * power off"' resume 'swaymsg "output * power on"' \
                          before-sleep '${lib.getExe pkgs.swaylock} -f -c 000000'
 
-          	        font Hurmit Nerd Font, 11
-          	        default_border pixel 2 # maybe use normal
+                    font Hurmit Nerd Font, 11
+                    default_border pixel 2 # maybe use normal
 
-          	        client.focused ${self.theme.base09} ${self.theme.base09} ${self.theme.base00} ${self.theme.base08} ${self.theme.base09}
-          	        client.urgent ${self.theme.base08} ${self.theme.base08} ${self.theme.base00} ${self.theme.base08} ${self.theme.base08}
+                    client.focused ${self.theme.base09} ${self.theme.base09} ${self.theme.base00} ${self.theme.base08} ${self.theme.base09}
+                    client.urgent ${self.theme.base08} ${self.theme.base08} ${self.theme.base00} ${self.theme.base08} ${self.theme.base08}
 
-          	        client.focused_inactive ${self.theme.base03} ${self.theme.base03} ${self.theme.base06} ${self.theme.base08} ${self.theme.base03}
-          	        client.focused_tab_title ${self.theme.base03} ${self.theme.base03} ${self.theme.base06} ${self.theme.base08} ${self.theme.base03}
-          	        client.unfocused ${self.theme.base03} ${self.theme.base03} ${self.theme.base06} ${self.theme.base08} ${self.theme.base03}
-                          
-                    input type:keyboard {
-                      xkb_layout "us,mn"
-                      xkb_options "grp:alt_shift_toggle"
-                    }
+                    client.focused_inactive ${self.theme.base03} ${self.theme.base03} ${self.theme.base06} ${self.theme.base08} ${self.theme.base03}
+                    client.focused_tab_title ${self.theme.base03} ${self.theme.base03} ${self.theme.base06} ${self.theme.base08} ${self.theme.base03}
+                    client.unfocused ${self.theme.base03} ${self.theme.base03} ${self.theme.base06} ${self.theme.base08} ${self.theme.base03}
 
-          	        focus_follows_mouse yes
-          	        focus_wrapping no
-          	        mode tiled
-                    
+                      input type:keyboard {
+                        xkb_layout "us,mn"
+                        xkb_options "grp:alt_shift_toggle"
+                      }
+
+                    focus_follows_mouse yes
+                    focus_wrapping no
+                    mode tiled
+
                     bindsym $Mod+Return exec ${lib.getExe self.packages.${pkgs.system}.foot}
                     bindsym $Mod+q kill
                     bindsym $Mod+space exec $menu
                     bindsym $Mod+Shift+c reload
-                    
+
                     bindsym $Mod+Shift+e exec swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' -B 'Yes, exit sway' 'swaymsg exit' --background ${fixColor self.theme.base08} --border ${fixColor self.theme.base09} --border-bottom ${fixColor self.theme.base09} --button-background ${fixColor self.theme.base09} --text ${fixColor self.theme.base00} --button-text ${fixColor self.theme.base00} --border-bottom-size 0
                     bindsym $Mod+h focus left
                     bindsym $Mod+j focus down
                     bindsym $Mod+k focus up
                     bindsym $Mod+l focus right
-                    
+
                     bindsym $Mod+Alt+h move left
                     bindsym $Mod+Alt+j move down
                     bindsym $Mod+Alt+k move up
@@ -112,32 +112,18 @@
                     bindsym --locked XF86AudioMute exec wpctl set-mute @DEFAULT_SINK@ toggle
                     bindsym --locked XF86AudioLowerVolume exec wpctl set-volume @DEFAULT_SINK@ 5%-
                     bindsym --locked XF86AudioRaiseVolume exec wpctl set-volume @DEFAULT_SINK@ 5%+
-                    
+
                     bindsym --locked XF86AudioPlay exec playerctl play-pause
                     bindsym --locked XF86AudioPause exec playerctl play-pause
                     bindsym --locked XF86AudioPrev exec playerctl previous
                     bindsym --locked XF86AudioNext exec playerctl next
                     bindsym --locked XF86AudioStop exec playerctl stop
-                    
+
                     bindsym --locked XF86MonBrightnessDown exec brightnessctl set 5%-
                     bindsym --locked XF86MonBrightnessUp exec brightnessctl set 5%+
-                    
+
                     # TODO: specialize
                     bindsym Print exec grim
-                    
-                    # bar {
-                    #   position top
-                    #
-                    #   # When the status_command prints a new line to stdout, swaybar updates.
-                    #   # The default just shows the current date and time.
-                    #   status_command while date +'%Y-%m-%d %X'; do sleep 1; done
-                    #
-                    #   colors {
-                    #     statusline #ffffff
-                    #     background #323232
-                    #     inactive_workspace #32323200 #32323200 #5c5c5c
-                    #   }
-                    # }
         '';
         x11fallbackIndex = pkgs.writeTextFile {
           name = "x11-nikocursors-fallback";

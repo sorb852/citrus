@@ -15,8 +15,8 @@
 
       shellAliases = {
         cls = "clear";
-        grep = "grep --color=auto"; # idk ripgrep is there too
         ls = "ls --color=auto"; # yeah good luck using this when theres eza
+        grep = "grep --color=auto"; # idk ripgrep is there too
         e = "${lib.getExe pkgs.eza} --color=always";
         ds = "devenv shell";
       };

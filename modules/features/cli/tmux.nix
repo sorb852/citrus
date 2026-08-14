@@ -47,8 +47,8 @@
         set -g status-right-length 100
         set -g status-right-style "fg=${self.theme.base09}"
 
-        set -g window-status-format "#I:#W#{?window_zoomed_flag,[],}"
-        set -g window-status-current-format "#I:#W#{?window_zoomed_flag,[],}"
+        set -g window-status-format "#{?window_zoomed_flag,[,}#I:#W#{?window_zoomed_flag,],}"
+        set -g window-status-current-format "#{?window_zoomed_flag,[,}#I:#W#{?window_zoomed_flag,],}"
         set -g window-status-style "fg=${self.theme.base07}"
         set -g window-status-current-style "fg=${self.theme.base09}"
       '';

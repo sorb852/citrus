@@ -33,6 +33,9 @@
               shiftwidth = 2;
               winborder = "single";
               termguicolors = true;
+              list = true;
+              listchars = "tab:> ,trail:.,nbsp:+";
+              showmode = false;
 
               foldcolumn = "3";
               foldmethod = "expr";
@@ -43,7 +46,6 @@
               swapfile = false;
               wrap = false;
               grepprg = "rg";
-              showmode = false;
             };
             # look, youll never know if id be using sway or bspwm tomorrow
             vim.clipboard = {
