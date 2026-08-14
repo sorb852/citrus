@@ -16,8 +16,6 @@
         set -g mouse on
         set -g renumber-windows on
 
-        bind r source-file ~/.config/tmux/tmux.conf \; display-message "tmux.conf reloaded!"
-
         bind 'v' split-window -h -c "#{pane_current_path}"
         bind 's' split-window -v -c "#{pane_current_path}"
 
@@ -49,8 +47,8 @@
         set -g status-right-length 100
         set -g status-right-style "fg=${self.theme.base09}"
 
-        set -g window-status-format "#I:#W"
-        set -g window-status-current-format "#I:#W"
+        set -g window-status-format "#I:#W#{?window_zoomed_flag,[],}"
+        set -g window-status-current-format "#I:#W#{?window_zoomed_flag,[],}"
         set -g window-status-style "fg=${self.theme.base07}"
         set -g window-status-current-style "fg=${self.theme.base09}"
       '';

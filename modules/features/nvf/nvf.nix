@@ -293,6 +293,8 @@
               nix.enable = true;
               go.enable = true;
               zig.enable = true;
+              json.enable = true;
+              qml.enable = true;
               python.enable = true;
             };
           })
