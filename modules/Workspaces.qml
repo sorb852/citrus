@@ -18,8 +18,6 @@ RowLayout {
     spacing: 0
 
     Repeater {
-
-        // model: I3.workspaces
         model: 6
 
         delegate: Rectangle {
@@ -37,15 +35,30 @@ RowLayout {
             implicitWidth: height
             Layout.fillHeight: true
 
-            color: (!workspaceExists || !workspace.focused) ? Colors.base01 : Colors.base02
+            color: {
+                if (mouseArea.containsMouse || (workspaceExists && workspace.focused))
+                    return Colors.base02;
+                return Colors.base01;
+            }
+
+            MouseArea {
+                id: mouseArea
+                anchors.fill: parent
+                hoverEnabled: true
+                onPressed: I3.dispatch(`workspace number ${unit.name}`)
+            }
 
             ColumnLayout {
                 anchors.fill: parent
                 spacing: 0
 
                 Rectangle {
-                    opacity: unit.workspaceExists && unit.workspace.focused ? 1 : 0
-                    color: Colors.base09
+                    opacity: mouseArea.containsMouse || (unit.workspaceExists && unit.workspace.focused) ? 1 : 0
+                    color: {
+                        if (unit.workspaceExists && unit.workspace.focused)
+                            return Colors.base09;
+                        return Colors.base0A;
+                    }
 
                     Layout.fillWidth: true
                     Layout.preferredHeight: 3
@@ -59,7 +72,15 @@ RowLayout {
                         anchors.centerIn: parent
 
                         text: unit.name
-                        color: !unit.workspaceExists ? Colors.base03 : unit.workspace.focused ? Colors.base09 : Colors.base07
+                        color: {
+                            if (unit.workspaceExists && unit.workspace.focused)
+                                return Colors.base09;
+                            if (mouseArea.containsMouse)
+                                return Colors.base0A;
+                            if (unit.workspaceExists)
+                                return Colors.base07;
+                            return Colors.base03;
+                        }
                         font.pixelSize: 16
                     }
                 }

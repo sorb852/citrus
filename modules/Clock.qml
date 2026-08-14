@@ -19,6 +19,6 @@ Rectangle {
 
         font.bold: true
         color: Colors.base01
-        text: Qt.formatDateTime(systemtime.date, "hh:mm | MM-dd")
+        text: Qt.formatDateTime(systemtime.date, "hh:mm MM/dd")
     }
 }
