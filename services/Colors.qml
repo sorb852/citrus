@@ -9,7 +9,7 @@ Singleton {
 
     FileView {
         id: colorsJson
-        path: Quickshell.env("QS_COLORS")
+        path: Quickshell.env("SOURSHELL_THEME_JSON")
         blockLoading: true
     }
 
