@@ -46,8 +46,6 @@ Item {
                         const _OHSWEETLOVEOFREACTION = root.eventCount;
                         return I3.findWorkspaceByName(name);
                     }
-                    Component.onCompleted: console.log(`Workspace ${name} with val ${workspace}`)
-
                     property bool workspaceExists: workspace !== null
 
                     implicitWidth: height
