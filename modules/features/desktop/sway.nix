@@ -23,6 +23,7 @@
     };
     packages.sway = inputs.wrappers.lib.wrapPackage (
       let
+        sourshell = lib.getExe self.packages.${pkgs.system}.sourshell;
         fixColor = col: lib.strings.removePrefix "#" col;
         conf = pkgs.writeText "config" ''
                     set $Mod Mod4
@@ -40,6 +41,7 @@
                       gsettings set org.gnome.desktop.interface cursor-size 24
                     }
 
+                    exec ${sourshell}
                     exec ${lib.getExe pkgs.swayidle} -w \
                          timeout 300 '${lib.getExe pkgs.swaylock} -f -c 000000' \
                          timeout 600 'swaymsg "output * power off"' resume 'swaymsg "output * power on"' \
