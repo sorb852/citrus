@@ -300,6 +300,7 @@
               python.enable = true;
             };
           })
+          # looks
           {
             vim.theme = {
               enable = true;
@@ -322,6 +323,13 @@
                 base0E = "${self.theme.base0E}";
                 base0F = "${self.theme.base0F}";
               };
+            };
+            vim.ui = {
+              borders = {
+                enable = true;
+                globalStyle = "single";
+              };
+              colorizer.enable = true;
             };
           }
         ];
