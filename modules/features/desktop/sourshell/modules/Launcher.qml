@@ -6,17 +6,36 @@ import Quickshell.Wayland
 import qs.services
 
 PanelWindow {
+    id: root
+
     anchors {
         top: true
         left: true
         right: true
     }
 
-    focusable: true
-
-    WlrLayershell.layer: WlrLayer.Top
     implicitHeight: 24
     color: Colors.base01
+    WlrLayershell.layer: WlrLayer.Top
+    exclusionMode: ExclusionMode.Ignore
+
+    visible: false
+    focusable: true
+    WlrLayershell.keyboardFocus: WlrKeyboardFocus.Exclusive
+
+    IpcHandler {
+        target: "launcher"
+        function open() {
+            if (root.visible)
+                return;
+            root.visible = true;
+        }
+    }
+
+    function close() {
+        input.clear();
+        root.visible = false;
+    }
 
     FileView {
         id: termPrefixFile
@@ -85,11 +104,12 @@ PanelWindow {
                     command,
                     workingDirectory: selected.workingDirectory
                 });
+                root.close();
             }
 
             Shortcut {
                 sequence: "Escape"
-                onActivated: input.clear()
+                onActivated: root.close()
             }
 
             Shortcut {
@@ -127,7 +147,7 @@ PanelWindow {
                 rightPadding: 8
 
                 text: modelData.name
-                font.bold: true
+                font.bold: isHighlighted
                 color: isHighlighted ? Colors.base01 : Colors.base07
             }
         }
