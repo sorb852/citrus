@@ -3,6 +3,7 @@ import QtQuick.Layouts
 import Quickshell
 import Quickshell.I3
 import qs.services
+import qs.modules
 
 Item {
     id: root
@@ -84,7 +85,7 @@ Item {
                             Layout.fillWidth: true
                             Layout.fillHeight: true
 
-                            Text {
+                            BaseText {
                                 anchors.centerIn: parent
 
                                 text: unit.name

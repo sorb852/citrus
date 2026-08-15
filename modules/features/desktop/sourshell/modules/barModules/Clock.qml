@@ -1,6 +1,7 @@
 import QtQuick
 import Quickshell
 import qs.services
+import qs.modules
 
 Rectangle {
     implicitWidth: clock.width

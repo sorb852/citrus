@@ -1,6 +1,7 @@
 import QtQuick
 import Quickshell.Services.UPower
 import qs.services
+import qs.modules
 
 BaseText {
     property real prettyPercentage: Math.round(UPower.displayDevice.percentage * 100)

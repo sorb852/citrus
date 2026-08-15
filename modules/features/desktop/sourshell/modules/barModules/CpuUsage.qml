@@ -1,5 +1,6 @@
 import QtQuick
 import qs.services
+import qs.modules
 
 BaseText {
     color: {

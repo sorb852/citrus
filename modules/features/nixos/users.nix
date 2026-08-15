@@ -1,5 +1,3 @@
-{ self, ... }:
-
 {
   # Users
   flake.nixosModules.users =
