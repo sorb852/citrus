@@ -11,6 +11,7 @@ PanelWindow {
         right: true
         bottom: true
     }
+
     WlrLayershell.layer: WlrLayer.Top
     implicitHeight: 32
     color: Colors.base01

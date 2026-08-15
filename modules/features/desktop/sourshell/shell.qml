@@ -8,4 +8,5 @@ import qs.modules as Modules
 ShellRoot {
     Component.onCompleted: Backlight.brightness
     Modules.Bar {}
+    Modules.Launcher {}
 }
