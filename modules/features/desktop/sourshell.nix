@@ -14,7 +14,13 @@
   perSystem = { pkgs, ... }: {
     packages.sourshell = inputs.wrappers.wrappers.quickshell.wrap {
       inherit pkgs;
+      runtimePkgs = [ pkgs.pipewire ];
       configDir = ./sourshell;
+      # TODO: Make dot specific stuff wrappers instead.
+      # Yes this is serious to a point I would do that.
+      # Ok maybe I might just be into making stuff complicated like that.
+      # But whatever.
+      # I mean I think it would be cool
       env.SOURSHELL_THEME_JSON = pkgs.writeText "colors.json" (
         builtins.toJSON {
           inherit (self.theme)
@@ -35,6 +41,11 @@
             base0E
             base0F
             ;
+        }
+      );
+      env.SOURSHELL_LAUNCHER_TERMINAL_PREFIX = pkgs.writeText "prefix.json" (
+        builtins.toJSON {
+          prefix = [ "foot" ];
         }
       );
     };

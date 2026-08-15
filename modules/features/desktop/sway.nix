@@ -28,7 +28,6 @@
         fixColor = col: lib.strings.removePrefix "#" col;
         conf = pkgs.writeText "config" ''
           set $Mod Mod4
-          set $menu ${lib.getExe' pkgs.wmenu "wmenu-run"} -p [RUN] -f "Hurmit Nerd Font Normal 11" -N ${fixColor self.theme.base01} -n ${fixColor self.theme.base07} -M ${fixColor self.theme.base09} -m ${fixColor self.theme.base01} -S ${fixColor self.theme.base09} -s ${fixColor self.theme.base01}
 
           output * bg ${../assets/wallpaper.jpg} fill
           output ePD-1 {
@@ -69,7 +68,7 @@
 
           bindsym $Mod+Return exec ${lib.getExe self.packages.${pkgs.system}.foot}
           bindsym $Mod+q kill
-          bindsym $Mod+space exec $menu
+          bindsym $Mod+space exec ${sourshell} ipc call launcher open
           bindsym $Mod+Shift+c reload
 
           bindsym $Mod+Shift+e exec swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' -B 'Yes, exit sway' 'swaymsg exit' --background ${fixColor self.theme.base08} --border ${fixColor self.theme.base09} --border-bottom ${fixColor self.theme.base09} --button-background ${fixColor self.theme.base09} --text ${fixColor self.theme.base00} --button-text ${fixColor self.theme.base00} --border-bottom-size 0
@@ -111,10 +110,9 @@
           bindsym $Mod+Shift+k resize shrink height 10px
           bindsym $Mod+Shift+l resize grow width 10px
 
-          bindsym --locked XF86AudioMicMute exec wpctl set-mute @DEFAULT_SOURCE@ toggle
-          bindsym --locked XF86AudioMute exec wpctl set-mute @DEFAULT_SINK@ toggle
-          bindsym --locked XF86AudioLowerVolume exec wpctl set-volume @DEFAULT_SINK@ 5%-
-          bindsym --locked XF86AudioRaiseVolume exec wpctl set-volume @DEFAULT_SINK@ 5%+
+          bindsym --locked XF86AudioMute exec ${sourshell} ipc call audio mute
+          bindsym --locked XF86AudioLowerVolume exec ${sourshell} ipc call audio dec 5
+          bindsym --locked XF86AudioRaiseVolume exec ${sourshell} ipc call audio inc 5
 
           bindsym --locked XF86AudioPlay exec playerctl play-pause
           bindsym --locked XF86AudioPause exec playerctl play-pause
@@ -122,8 +120,8 @@
           bindsym --locked XF86AudioNext exec playerctl next
           bindsym --locked XF86AudioStop exec playerctl stop
 
-          bindsym --locked XF86MonBrightnessDown exec brightnessctl set 5%-
-          bindsym --locked XF86MonBrightnessUp exec brightnessctl set 5%+
+          bindsym --locked XF86MonBrightnessDown exec ${sourshell} ipc call backlight dec 5
+          bindsym --locked XF86MonBrightnessUp exec ${sourshell} ipc call backlight inc 5
 
           # TODO: specialize
           bindsym Print exec grim
