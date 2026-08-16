@@ -42,4 +42,6 @@ Singleton {
             }
         }
     }
+
+    Component.onCompleted: console.log("Sysinfo service up")
 }

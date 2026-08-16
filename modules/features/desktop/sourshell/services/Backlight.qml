@@ -62,4 +62,6 @@ Singleton {
             root.adjust(-(v / 100));
         }
     }
+
+    Component.onCompleted: console.log("Backlight service up")
 }

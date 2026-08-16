@@ -63,4 +63,6 @@ Singleton {
             root.setMute(!root.muted);
         }
     }
+
+    Component.onCompleted: console.log("Audio service up")
 }

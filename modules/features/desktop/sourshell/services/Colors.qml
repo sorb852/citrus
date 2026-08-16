@@ -31,4 +31,6 @@ Singleton {
     readonly property color base0D: rawJson["base0D"] || "#1fff75"
     readonly property color base0E: rawJson["base0E"] || "#d8466f"
     readonly property color base0F: rawJson["base0F"] || "#ea3458"
+
+    Component.onCompleted: console.log("Color palette up")
 }
