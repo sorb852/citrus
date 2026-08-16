@@ -28,11 +28,13 @@ PanelWindow {
         function open() {
             if (root.visible)
                 return;
+            console.log("Opening launcher");
             root.visible = true;
         }
     }
 
     function close() {
+        console.log("Closing launcher");
         input.clear();
         root.visible = false;
     }
@@ -99,7 +101,7 @@ PanelWindow {
                 const termPrefix = selected.runInTerminal ? JSON.parse(termPrefixFile.text() || '{"prefix":[]}').prefix : [];
                 const command = [...termPrefix, ...selected.command];
 
-                console.log(`Running "${command.join(' ')}"`);
+                console.log(`Executing "${command.join(' ')}"`);
                 Quickshell.execDetached({
                     command,
                     workingDirectory: selected.workingDirectory
