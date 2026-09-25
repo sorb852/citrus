@@ -110,7 +110,7 @@
           bindsym $Mod+Shift+k resize shrink height 10px
           bindsym $Mod+Shift+l resize grow width 10px
 
-          bindsym --locked XF86AudioMute exec ${sourshell} ipc call audio mute
+          bindsym --locked XF86AudioMute exec ${sourshell} ipc call audio toggle
           bindsym --locked XF86AudioLowerVolume exec ${sourshell} ipc call audio dec 5
           bindsym --locked XF86AudioRaiseVolume exec ${sourshell} ipc call audio inc 5
 

@@ -284,13 +284,22 @@
                 # TODO: maybe implement other mappings
                 format = "<leader>f";
                 hover = "K";
+                codeAction = "gra";
+                goToDeclaration = "grD";
+                goToDefinition = "grd";
                 renameSymbol = "grn";
               };
+              servers."typescript-language-server".filetypes = [
+                "typescript"
+                "javascript"
+                "typescriptreact"
+              ];
             };
 
             vim.languages = {
               enableFormat = true;
               enableTreesitter = true;
+              arduino.enable = true;
               clang.enable = true;
               nix.enable = true;
               go.enable = true;
@@ -298,6 +307,19 @@
               json.enable = true;
               qml.enable = true;
               python.enable = true;
+              lua.enable = true;
+              # the devious 3
+              html.enable = true;
+              typescript.enable = true;
+              css.enable = true;
+              # and that random sidekick (goated though)
+              svelte.enable = true;
+
+              markdown = {
+                enable = true;
+                # extensions.render-markdown-nvim.enable = true;
+                extensions.markview-nvim.enable = true;
+              };
             };
           })
           # looks

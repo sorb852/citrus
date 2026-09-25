@@ -26,8 +26,11 @@ PanelWindow {
     IpcHandler {
         target: "launcher"
         function open() {
-            if (root.visible)
+            if (root.visible) {
+                console.log("Launcher already open, closing");
+                root.close();
                 return;
+            }
             console.log("Opening launcher");
             root.visible = true;
         }

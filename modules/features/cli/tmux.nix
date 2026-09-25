@@ -15,6 +15,8 @@
       extraConfig = ''
         set -g mouse on
         set -g renumber-windows on
+        set -g default-terminal "tmux-256color"
+        set -as terminal-overrides ',xterm*:sitm=\E[3m'
 
         bind 'v' split-window -h -c "#{pane_current_path}"
         bind 's' split-window -v -c "#{pane_current_path}"

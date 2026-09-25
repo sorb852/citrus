@@ -9,6 +9,7 @@
       self.nixosModules.foot
       self.nixosModules.sway
       self.nixosModules.gaming
+      self.nixosModules.creative
       self.nixosModules.qutebrowser
     ];
   };
