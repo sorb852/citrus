@@ -121,10 +121,10 @@
 
           # Background color for hints. Note that you can use a rgba(...) value
           # for transparency.
-          c.colors.hints.bg = base0A
+          c.colors.hints.bg = base09
 
           # Font color for the matched part of hints.
-          c.colors.hints.match.fg = base05
+          c.colors.hints.match.fg = base0D
 
           # Text color for the keyhint widget.
           c.colors.keyhint.fg = base05
@@ -314,25 +314,46 @@
           # <<< END FLAVOURS >>>
 
           c.auto_save.session = True
+
+          config.bind("<Ctrl+l>", "config-cycle colors.webpage.darkmode.enabled")
+          c.url.searchengines = {
+            "DEFAULT": "https://duckduckgo.com/?q={}",
+            "!wp": "https://www.wikipedia.org/search-redirect.php?search={}",
+            "!wa": "https://wiki.archlinux.org/?search={}"
+          }
+
           c.colors.webpage.darkmode.enabled = True
           c.colors.webpage.preferred_color_scheme = "dark"
+
           c.content.notifications.enabled = True
           c.content.pdfjs = True
+          c.content.autoplay = False
+
           c.fonts.default_family = "Hurmit Nerd Font"
           c.fonts.hints = "bold 12pt default_family"
+
           # AHAHAHHA RECTANGLES AHAHAHAHAHAH
           # I LOVE 90 DEgREE DANGLES TOO
           # AHAHHAHA HHAHHAHAHAH
           #
           # I'm sorry for the actions I have taken in regards of having no radius buttons, please forgive me.
           c.hints.radius = 0
+          c.hints.border = "0px"
           c.keyhint.radius = 0
           c.prompt.radius = 0
           c.qt.args = None
           c.statusbar.position = "bottom"
+
+          c.tabs.show = "switching"
+          c.tabs.show_switching_delay = 1600
+          c.tabs.width = "30%"
           c.tabs.background = False
           c.tabs.position = "left"
           c.tabs.title.elide = "none"
+
+          c.downloads.location.directory = "~/Downloads"
+
+          c.scrolling.bar = "when-searching"
 
           c.qt.args = ["disable-accelerated-video-decode"] # had to do because of some bug
         '';
