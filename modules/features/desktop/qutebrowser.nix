@@ -319,7 +319,8 @@
           c.url.searchengines = {
             "DEFAULT": "https://duckduckgo.com/?q={}",
             "!wp": "https://www.wikipedia.org/search-redirect.php?search={}",
-            "!wa": "https://wiki.archlinux.org/?search={}"
+            "!wa": "https://wiki.archlinux.org/?search={}",
+            "!yt": "https://www.youtube.com/results?search_query={}"
           }
 
           c.colors.webpage.darkmode.enabled = True
