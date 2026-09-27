@@ -318,7 +318,7 @@
           config.bind("<Ctrl+l>", "config-cycle colors.webpage.darkmode.enabled")
           c.url.searchengines = {
             "DEFAULT": "https://duckduckgo.com/?q={}",
-            "!yt": "https://www.youtube.com/results?search_query={}"
+            "!yt": "https://www.youtube.com/results?search_query={}",
             # Wikis
             "!wp": "https://www.wikipedia.org/search-redirect.php?search={}",
             "!wa": "https://wiki.archlinux.org/?search={}",
