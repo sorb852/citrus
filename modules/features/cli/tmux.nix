@@ -2,6 +2,14 @@
 
 {
   flake.nixosModules.tmux = {
+    nixpkgs.overlays = [
+      (final: prev: {
+        tmux = prev.tmux.overrideAttrs (old: {
+          configureFlags = (old.configureFlags or [ ]) ++ [ "--enable-sixel" ];
+        });
+      })
+    ];
+
     programs.tmux = {
       enable = true;
 

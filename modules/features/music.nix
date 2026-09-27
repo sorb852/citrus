@@ -137,13 +137,13 @@
               preview_label_style: (fg: "${self.theme.base0F}"),
               preview_metadata_group_style: (fg: "${self.theme.base09}"),
               tab_bar: (
-                active_style: (fg: "${self.theme.base01}", bg: "${self.theme.base07}"),
+                active_style: (fg: "${self.theme.base00}", bg: "${self.theme.base09}", bold: true),
                 inactive_style: (fg: "${self.theme.base07}"),
               ),
               highlighted_item_style: (bg: "${self.theme.base00}", fg: "${self.theme.base08}"),
-              current_item_style: (bg: "${self.theme.base01}", fg: "${self.theme.base0E}"),
+              current_item_style: (bg: "${self.theme.base01}", fg: "${self.theme.base08}"),
               borders_style: (fg: "${self.theme.base03}"),
-              highlight_border_style: (fg: "${self.theme.base04}"),
+              highlight_border_style: (fg: "${self.theme.base09}"),
               song_table_format: [
                 (
                   prop: (
@@ -193,7 +193,7 @@
                     (
                       size: "100%",
                       pane: Pane(Cava),
-                      borders: "LEFT | TOP | BOTTOM",
+                      borders: "TOP | BOTTOM",
                       border_symbols: Inherited(parent: Plain, bottom_left: "├", top_left: "├"),
                       border_title: [
                         (
@@ -219,7 +219,7 @@
                     ),
                     (
                       size: "2.2r",
-                      borders: "LEFT | TOP | RIGHT | BOTTOM",
+                      borders: "LEFT | TOP | BOTTOM",
                       border_symbols: Inherited(
                         parent: Plain,
                         bottom_left: "┴", top_left: "┬",
@@ -259,18 +259,16 @@
                        paused_style: (fg: "${self.theme.base09}"),
                        stopped_style: (fg: "${self.theme.base08}"),
                       )))),
-                      ( kind: Text(" | "), style: (fg: "${self.theme.base06}")),
-                      // ( kind: Text("< "), style: (fg: "${self.theme.base0C}") ),
+                      ( kind: Text(" | "), style: (fg: "${self.theme.base03}")),
                       (
                         kind: Property(Status(Elapsed)),
                         style: (fg: "${self.theme.base0C}")
                       ),
-                      ( kind: Text(" of "), style: (fg: "${self.theme.base06}")),
+                      ( kind: Text(" of "), style: (fg: "${self.theme.base07}")),
                       (
                         kind: Property(Status(Duration)),
                         style: (fg: "${self.theme.base0D}")
                       ),
-                      // ( kind: Text(" >"), style: (fg: "${self.theme.base0D}") ),
                     ],
                     center: [
                       (
@@ -287,12 +285,11 @@
                     ],
                     right: [
                       (kind: Property(Status(RepeatV2(on_label: "󰑖", off_label: "󰑖", on_style: (fg: "${self.theme.base08}"), on_off: (fg: "${self.theme.base03}"))))),
-                      (kind: Text(" / "), style: (fg: "${self.theme.base07}")),
+                      (kind: Text(" / "), style: (fg: "${self.theme.base03}")),
                       (kind: Property(Status(RandomV2(on_label: "󰒟", off_label: "󰒟", on_style: (fg: "${self.theme.base09}"), on_off: (fg: "${self.theme.base03}"))))),
-                      (kind: Text(" / "), style: (fg: "${self.theme.base07}")),
+                      (kind: Text(" / "), style: (fg: "${self.theme.base03}")),
                       (kind: Property(Status(SingleV2(on_label: "󰎄", off_label: "󰎄", on_style: (fg: "${self.theme.base0A}"), on_off: (fg: "${self.theme.base03}"))))),
-                      // (kind: Text(" / Vol at "), style: (fg: "${self.theme.base07}")),
-                      (kind: Text(" / "), style: (fg: "${self.theme.base07}")),
+                      (kind: Text(" / "), style: (fg: "${self.theme.base03}")),
                       (kind: Property(Status(Volume)), style: (fg: "${self.theme.base0D}")),
                       (kind: Text("% "), style: (fg: "${self.theme.base0D}"))
                     ],
@@ -304,20 +301,20 @@
                 direction: Vertical,
                 panes: [
                   (
-                    size: "3",
-                    borders: "ALL",
+                    size: "2",
+                    borders: "BOTTOM",
                     border_symbols: Inherited(parent: Plain, bottom_left: "├", bottom_right: "┤"),
                     pane: Pane(Tabs)
                   ),
                   (
                     size: "2",
-                    borders: "BOTTOM | LEFT | RIGHT",
+                    borders: "BOTTOM",
                     border_symbols: Inherited(parent: Plain, bottom_left: "├", bottom_right: "┤"),
                     pane: Pane(Header)
                   ),
                   (
                     size: "70%",
-                    borders: "LEFT | RIGHT",
+                    borders: "NONE",
                     pane: Pane(TabContent)
                   ),
                   (
@@ -325,15 +322,15 @@
                     pane: Component("track_deco")
                   ),
                   (
-                    size: "2",
-                    borders: "BOTTOM | LEFT | RIGHT",
+                    size: "1",
+                    borders: "NONE",
                     pane: Pane(ProgressBar)
                   ),
                 ]
               )
             )
           '';
-          config = pkgs.writeTextDir "config/config.ron" ''
+          config = pkgs.writeTextDir "config/config.ron" /* js */ ''
             #![enable(implicit_some)]
             #![enable(unwrap_newtypes)]
             #![enable(unwrap_variant_newtypes)]
@@ -358,7 +355,7 @@
                 )
               ),
               album_art: (
-                method: Block,
+                method: Sixel,
                 vertical_align: Center,
                 horizontal_align: Center,
               ),
