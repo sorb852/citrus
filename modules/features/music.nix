@@ -84,8 +84,11 @@
       packages.rmpc = inputs.wrappers.lib.wrapPackage (
         { ... }:
         let
-          # TODO: Somehow make it work with noctalia
-          theme = pkgs.writeTextDir "config/theme.ron" ''
+          # had to make the syntax python
+          # why?
+          # ron doesnt fucking exist, rust also doesn't work
+          # somehow javascript worked????
+          theme = pkgs.writeTextDir "config/theme.ron" /* python */ ''
             #![enable(implicit_some)]
             #![enable(unwrap_newtypes)]
             #![enable(unwrap_variant_newtypes)]
@@ -144,13 +147,13 @@
               song_table_format: [
                 (
                   prop: (
-            	kind: Group([])
+                    kind: Group([])
                   ),
                   width: "1",
                 ),
                 (
                   prop: (
-            	style: (fg: "${self.theme.base09}"),
+                    style: (fg: "${self.theme.base09}"),
                     kind: Property(Title),
                     default: (kind: Text("Unknown track"))
                   ),
@@ -159,7 +162,7 @@
                 ),
                 (
                   prop: (
-            	style: (fg: "${self.theme.base0C}"),
+                    style: (fg: "${self.theme.base0C}"),
                     kind: Property(Album),
                     default: (kind: Text("Unknown Album"))
                   ),
@@ -168,7 +171,7 @@
                 ),
                 (
                   prop: (
-            	style: (fg: "${self.theme.base0D}"),
+                    style: (fg: "${self.theme.base0D}"),
                     kind: Property(Artist),
                     default: (kind: Text("Unknown artist"))
                   ),
@@ -177,7 +180,7 @@
                 ),
                 (
                   prop: (
-            	kind: Group([])
+                    kind: Group([])
                   ),
                   width: "1",
                 ),
@@ -187,61 +190,61 @@
                 "track_deco": Split(
                   direction: Horizontal,
                   panes: [
-            	(
-            	  size: "100%",
-            	  pane: Pane(Cava),
-            	  borders: "LEFT | TOP | BOTTOM",
-            	  border_symbols: Inherited(parent: Plain, bottom_left: "├", top_left: "├"),
-            	  border_title: [
-            	    (
-            	      kind: Group([
-            		(
-            	    	  kind: Text(" ")
-            	    	),
-            		(
-            	    	  kind: Text("Now playing: ")
-            	    	),
-            		(
-            		  kind: Property(Song(Title)),
-            		  style: (fg: "${self.theme.base0B}")
-            		),
-            		(
-            	    	  kind: Text(" ")
-            	    	),
-            	      ]),
-            	      default: (kind: Text(" No song "), style: (fg: "${self.theme.base08}"), modifiers: "Bold")
-            	    ),
-            	  ],
-            	  border_title_alignment: Left
-            	),
-            	(
-            	  size: "2.2r",
-            	  borders: "LEFT | TOP | RIGHT | BOTTOM",
-            	  border_symbols: Inherited(
-            	    parent: Plain,
-            	    bottom_left: "┴", top_left: "┬",
-            	    bottom_right: "┤", top_right: "┤",
-            	  ),
-            	  pane: Pane(AlbumArt),
-            	  border_title: [
-            	    (
-            	      kind: Group([
-            		( kind: Text(" ["), style: (fg: "${self.theme.base0C}") ),
-                  		(
-                  		  kind: Property(Status(Elapsed)),
-                  		  style: (fg: "${self.theme.base0C}")
-                  		),
-                  		( kind: Text("/") ),
-                  		(
-                  		  kind: Property(Status(Duration)),
-                  		  style: (fg: "${self.theme.base0D}")
-                  		),
-                  		( kind: Text("] "), style: (fg: "${self.theme.base0D}") ),
-            	      ]),
-            	    ),
-            	  ],
-            	  border_title_alignment: Right
-            	)
+                    (
+                      size: "100%",
+                      pane: Pane(Cava),
+                      borders: "LEFT | TOP | BOTTOM",
+                      border_symbols: Inherited(parent: Plain, bottom_left: "├", top_left: "├"),
+                      border_title: [
+                        (
+                          kind: Group([
+                            (
+                              kind: Text(" ")
+                            ),
+                            (
+                              kind: Text("Now playing: ")
+                            ),
+                            (
+                              kind: Property(Song(Title)),
+                              style: (fg: "${self.theme.base0B}")
+                            ),
+                            (
+                              kind: Text(" ")
+                            ),
+                          ]),
+                          default: (kind: Text(" No song "), style: (fg: "${self.theme.base08}"), modifiers: "Bold")
+                        ),
+                      ],
+                      border_title_alignment: Left
+                    ),
+                    (
+                      size: "2.2r",
+                      borders: "LEFT | TOP | RIGHT | BOTTOM",
+                      border_symbols: Inherited(
+                        parent: Plain,
+                        bottom_left: "┴", top_left: "┬",
+                        bottom_right: "┤", top_right: "┤",
+                      ),
+                      pane: Pane(AlbumArt),
+                      border_title: [
+                        (
+                          kind: Group([
+                            ( kind: Text(" ["), style: (fg: "${self.theme.base0C}") ),
+                            (
+                              kind: Property(Status(Elapsed)),
+                              style: (fg: "${self.theme.base0C}")
+                            ),
+                            ( kind: Text("/") ),
+                            (
+                              kind: Property(Status(Duration)),
+                              style: (fg: "${self.theme.base0D}")
+                            ),
+                            ( kind: Text("] "), style: (fg: "${self.theme.base0D}") ),
+                          ]),
+                        ),
+                      ],
+                      border_title_alignment: Right
+                    )
                   ]
                 ),
               },
@@ -249,50 +252,50 @@
               header: (
                 rows: [
                   (
-            	      left: [
-            	        (kind: Property(Status(StateV2(
-            	         playing_label: " 󰐊", paused_label: " 󰏤", stopped_label: " 󰓛",
-            	         playing_style: (fg: "${self.theme.base0B}"),
-            	         paused_style: (fg: "${self.theme.base09}"),
-            	         stopped_style: (fg: "${self.theme.base08}"),
-            	        )))),
-                  	  ( kind: Text(" | "), style: (fg: "${self.theme.base06}")),
-                  	  // ( kind: Text("< "), style: (fg: "${self.theme.base0C}") ),
-                  	  (
-                  	    kind: Property(Status(Elapsed)),
-                  	    style: (fg: "${self.theme.base0C}")
-                  	  ),
-                  	  ( kind: Text(" of "), style: (fg: "${self.theme.base06}")),
-                  	  (
-                  	    kind: Property(Status(Duration)),
-                  	    style: (fg: "${self.theme.base0D}")
-                  	  ),
-                  	  // ( kind: Text(" >"), style: (fg: "${self.theme.base0D}") ),
-            	      ],
-            	      center: [
-            	        (
-            	          kind: Property(Song(Title)),
-            	          style: (fg: "${self.theme.base0C}", modifiers: "Bold"),
-            	          default: (kind: Text("No song"), style: (fg: "${self.theme.base08}"))
-            	        ),
-            	        ( kind: Text(" by "), style: (fg: "${self.theme.base07}") ),
-            	        (
-            	          kind: Property(Song(Artist)),
-            	          style: (fg: "${self.theme.base0B}"),
-            	          default: (kind: Text("Unknown artist"), style: (fg: "${self.theme.base09}"))
-            	        ),
-            	      ],
-            	      right: [
-            	        (kind: Property(Status(RepeatV2(on_label: "󰑖", off_label: "󰑖", on_style: (fg: "${self.theme.base08}"), on_off: (fg: "${self.theme.base03}"))))),
-            	        (kind: Text(" / "), style: (fg: "${self.theme.base07}")),
-            	        (kind: Property(Status(RandomV2(on_label: "󰒟", off_label: "󰒟", on_style: (fg: "${self.theme.base09}"), on_off: (fg: "${self.theme.base03}"))))),
-            	        (kind: Text(" / "), style: (fg: "${self.theme.base07}")),
-            	        (kind: Property(Status(SingleV2(on_label: "󰎄", off_label: "󰎄", on_style: (fg: "${self.theme.base0A}"), on_off: (fg: "${self.theme.base03}"))))),
-            	        // (kind: Text(" / Vol at "), style: (fg: "${self.theme.base07}")),
-            	        (kind: Text(" / "), style: (fg: "${self.theme.base07}")),
-            	        (kind: Property(Status(Volume)), style: (fg: "${self.theme.base0D}")),
-            	        (kind: Text("% "), style: (fg: "${self.theme.base0D}"))
-            	      ],
+                    left: [
+                      (kind: Property(Status(StateV2(
+                       playing_label: " 󰐊", paused_label: " 󰏤", stopped_label: " 󰓛",
+                       playing_style: (fg: "${self.theme.base0B}"),
+                       paused_style: (fg: "${self.theme.base09}"),
+                       stopped_style: (fg: "${self.theme.base08}"),
+                      )))),
+                      ( kind: Text(" | "), style: (fg: "${self.theme.base06}")),
+                      // ( kind: Text("< "), style: (fg: "${self.theme.base0C}") ),
+                      (
+                        kind: Property(Status(Elapsed)),
+                        style: (fg: "${self.theme.base0C}")
+                      ),
+                      ( kind: Text(" of "), style: (fg: "${self.theme.base06}")),
+                      (
+                        kind: Property(Status(Duration)),
+                        style: (fg: "${self.theme.base0D}")
+                      ),
+                      // ( kind: Text(" >"), style: (fg: "${self.theme.base0D}") ),
+                    ],
+                    center: [
+                      (
+                        kind: Property(Song(Title)),
+                        style: (fg: "${self.theme.base0C}", modifiers: "Bold"),
+                        default: (kind: Text("No song"), style: (fg: "${self.theme.base08}"))
+                      ),
+                      ( kind: Text(" by "), style: (fg: "${self.theme.base07}") ),
+                      (
+                        kind: Property(Song(Artist)),
+                        style: (fg: "${self.theme.base0B}"),
+                        default: (kind: Text("Unknown artist"), style: (fg: "${self.theme.base09}"))
+                      ),
+                    ],
+                    right: [
+                      (kind: Property(Status(RepeatV2(on_label: "󰑖", off_label: "󰑖", on_style: (fg: "${self.theme.base08}"), on_off: (fg: "${self.theme.base03}"))))),
+                      (kind: Text(" / "), style: (fg: "${self.theme.base07}")),
+                      (kind: Property(Status(RandomV2(on_label: "󰒟", off_label: "󰒟", on_style: (fg: "${self.theme.base09}"), on_off: (fg: "${self.theme.base03}"))))),
+                      (kind: Text(" / "), style: (fg: "${self.theme.base07}")),
+                      (kind: Property(Status(SingleV2(on_label: "󰎄", off_label: "󰎄", on_style: (fg: "${self.theme.base0A}"), on_off: (fg: "${self.theme.base03}"))))),
+                      // (kind: Text(" / Vol at "), style: (fg: "${self.theme.base07}")),
+                      (kind: Text(" / "), style: (fg: "${self.theme.base07}")),
+                      (kind: Property(Status(Volume)), style: (fg: "${self.theme.base0D}")),
+                      (kind: Text("% "), style: (fg: "${self.theme.base0D}"))
+                    ],
                   )
                 ]
               ),
@@ -301,30 +304,30 @@
                 direction: Vertical,
                 panes: [
                   (
-            	size: "3",
-            	borders: "ALL",
-            	border_symbols: Inherited(parent: Plain, bottom_left: "├", bottom_right: "┤"),
-            	pane: Pane(Tabs)
+                    size: "3",
+                    borders: "ALL",
+                    border_symbols: Inherited(parent: Plain, bottom_left: "├", bottom_right: "┤"),
+                    pane: Pane(Tabs)
                   ),
                   (
-            	size: "2",
-            	borders: "BOTTOM | LEFT | RIGHT",
-            	border_symbols: Inherited(parent: Plain, bottom_left: "├", bottom_right: "┤"),
-            	pane: Pane(Header)
+                    size: "2",
+                    borders: "BOTTOM | LEFT | RIGHT",
+                    border_symbols: Inherited(parent: Plain, bottom_left: "├", bottom_right: "┤"),
+                    pane: Pane(Header)
                   ),
                   (
-            	size: "70%",
-            	borders: "LEFT | RIGHT",
-            	pane: Pane(TabContent)
+                    size: "70%",
+                    borders: "LEFT | RIGHT",
+                    pane: Pane(TabContent)
                   ),
                   (
-            	size: "30%",
-            	pane: Component("track_deco")
+                    size: "30%",
+                    pane: Component("track_deco")
                   ),
                   (
-            	size: "2",
-            	borders: "BOTTOM | LEFT | RIGHT",
-            	pane: Pane(ProgressBar)
+                    size: "2",
+                    borders: "BOTTOM | LEFT | RIGHT",
+                    pane: Pane(ProgressBar)
                   ),
                 ]
               )
@@ -455,7 +458,7 @@
         {
           inherit pkgs;
           package = pkgs.rmpc;
-          runtimePkgs = [ pkgs.cava pkgs.ueberzugpp ];
+          runtimePkgs = [ pkgs.cava ];
           flags = {
             "--config" = "${config}/config/config.ron";
           };
