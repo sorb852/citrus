@@ -10,7 +10,7 @@
     environment.systemPackages = [ self.packages.${pkgs.system}.nvf ];
   };
 
-  perSystem = { pkgs, ... }: {
+  perSystem = { lib, pkgs, ... }: {
     packages.nvf =
       (inputs.nvf.lib.neovimConfiguration {
         inherit pkgs;
@@ -45,14 +45,12 @@
 
               swapfile = false;
               wrap = false;
-              grepprg = "rg";
+              grepprg = "${lib.getExe pkgs.ripgrep}";
             };
-            # look, youll never know if id be using sway or bspwm tomorrow
             vim.clipboard = {
               enable = true;
               registers = "unnamedplus";
               providers.wl-copy.enable = true;
-              # providers.xclip.enable = true;
             };
           }
           # autogroups and autocmds
@@ -241,6 +239,17 @@
                         end
                       })
                     end
+                  end
+                '';
+              }
+              {
+                event = [ "FileType" ];
+                pattern = [ "*markdown" ];
+                desc = "Enable wrapping for markdown";
+                callback = lib.mkLuaInline /* lua */ ''
+                  function()
+                    vim.opt_local.wrap = true;
+                    vim.opt_local.linebreak = true;
                   end
                 '';
               }
