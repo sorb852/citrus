@@ -317,6 +317,7 @@
               qml.enable = true;
               python.enable = true;
               lua.enable = true;
+              rust.enable = true;
               # the devious 3
               html.enable = true;
               typescript.enable = true;
