@@ -347,9 +347,28 @@
           c.qt.args = None
           c.statusbar.position = "bottom"
 
-          c.tabs.show = "switching"
+          no_side_bar = {
+            "show": "switching",
+            "format": "{audio}{index}: {current_title}",
+            "width": "30%"
+          }
+
+          active_side_bar = {
+            "show": "always",
+            "format": " | {index}",
+            "width": "80"
+          }
+
+          config.bind(f"e", " ;; ".join([
+              f"config-cycle tabs.show {no_side_bar["show"]} {active_side_bar["show"]}",
+              f"config-cycle tabs.title.format '{no_side_bar["format"]}' '{active_side_bar["format"]}'",
+              f"config-cycle tabs.width '{no_side_bar["width"]}' '{active_side_bar["width"]}'"
+            ]))
+
+          c.tabs.show = no_side_bar["show"]
+          c.tabs.width = no_side_bar["width"]
+          c.tabs.title.format = no_side_bar["format"]
           c.tabs.show_switching_delay = 1600
-          c.tabs.width = "30%"
           c.tabs.background = False
           c.tabs.position = "left"
           c.tabs.title.elide = "none"
