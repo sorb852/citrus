@@ -74,6 +74,14 @@
           c.colors.completion.item.selected.border.top = base09
           c.colors.completion.item.selected.border.bottom = base09
 
+          # context menu
+          c.colors.contextmenu.disabled.fg = base03
+          c.colors.contextmenu.disabled.bg = base01
+          c.colors.contextmenu.menu.fg = base07
+          c.colors.contextmenu.menu.bg = base01
+          c.colors.contextmenu.selected.fg = base09
+          c.colors.contextmenu.selected.bg = base02
+
           # <<< START FLAVOURS >>>
           # did you really think i would set colors for ALL of them, MANUALLY??
           # base16-qutebrowser (https://github.com/theova/base16-qutebrowser)
