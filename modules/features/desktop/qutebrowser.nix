@@ -99,6 +99,23 @@
           c.colors.messages.error.bg = base08
           c.colors.messages.error.border = base08
 
+          # tabs
+          c.colors.tabs.bar.bg = base01
+          c.colors.tabs.odd.fg = base07
+          c.colors.tabs.odd.bg = base02
+          c.colors.tabs.even.fg = base07
+          c.colors.tabs.even.bg = base03
+
+          c.colors.tabs.indicator.error = base08
+          c.colors.tabs.indicator.start = base0A
+          c.colors.tabs.indicator.stop = base0B
+
+          c.colors.tabs.selected.odd.fg = base00
+          c.colors.tabs.selected.even.fg = base00
+          c.colors.tabs.selected.odd.bg = base09
+          c.colors.tabs.selected.even.bg = base09
+
+          # webpage bg
           c.colors.webpage.bg = base00
 
           # <<< START FLAVOURS >>>
