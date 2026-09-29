@@ -27,26 +27,52 @@
           base0E = "${self.theme.base0E}"
           base0F = "${self.theme.base0F}"
 
+          # status bar colors
+          ## url
           c.colors.statusbar.url.fg = base07
           c.colors.statusbar.url.warn.fg = base09
           c.colors.statusbar.url.error.fg = base08
           c.colors.statusbar.url.success.http.fg = base0B
           c.colors.statusbar.url.success.https.fg = base0C
 
+          ## progress bar
           c.colors.statusbar.progress.bg = base09
 
+          ## mode colors
           c.colors.statusbar.normal.fg = base07
           c.colors.statusbar.normal.bg = base01
           c.colors.statusbar.command.fg = base07
           c.colors.statusbar.command.bg = base01
           c.colors.statusbar.insert.fg = base00
-          c.colors.statusbar.insert.bg = base0C
+          c.colors.statusbar.insert.bg = base09
           c.colors.statusbar.passthrough.fg = base00
-          c.colors.statusbar.passthrough.bg = base0B
+          c.colors.statusbar.passthrough.bg = base0A
           c.colors.statusbar.caret.fg = base00
-          c.colors.statusbar.caret.bg = base0E
+          c.colors.statusbar.caret.bg = base0B
           c.colors.statusbar.caret.selection.fg = base00
-          c.colors.statusbar.caret.selection.bg = base0D
+          c.colors.statusbar.caret.selection.bg = base0C
+
+          # completion
+          ## header
+          c.colors.completion.category.fg = base00
+          c.colors.completion.category.bg = base09
+          c.colors.completion.category.border.top = base09
+          c.colors.completion.category.border.bottom = base09
+
+          ## widget itself
+          c.colors.completion.fg = [base07, base05, base0C]
+          c.colors.completion.match.fg = base08
+          c.colors.completion.even.bg = base01
+          c.colors.completion.odd.bg = base02
+          c.colors.completion.scrollbar.fg = base09
+          c.colors.completion.scrollbar.bg = base03
+
+          ## item
+          c.colors.completion.item.selected.fg = base03
+          c.colors.completion.item.selected.match.fg = base00
+          c.colors.completion.item.selected.bg = base09
+          c.colors.completion.item.selected.border.top = base09
+          c.colors.completion.item.selected.border.bottom = base09
 
           # <<< START FLAVOURS >>>
           # did you really think i would set colors for ALL of them, MANUALLY??
