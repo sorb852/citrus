@@ -28,17 +28,14 @@
           base0F = "${self.theme.base0F}"
 
           # status bar colors
-          ## url
           c.colors.statusbar.url.fg = base07
           c.colors.statusbar.url.warn.fg = base09
           c.colors.statusbar.url.error.fg = base08
           c.colors.statusbar.url.success.http.fg = base0B
           c.colors.statusbar.url.success.https.fg = base0C
 
-          ## progress bar
           c.colors.statusbar.progress.bg = base09
 
-          ## mode colors
           c.colors.statusbar.normal.fg = base07
           c.colors.statusbar.normal.bg = base01
           c.colors.statusbar.command.fg = base07
@@ -53,13 +50,11 @@
           c.colors.statusbar.caret.selection.bg = base0C
 
           # completion
-          ## header
           c.colors.completion.category.fg = base00
           c.colors.completion.category.bg = base09
           c.colors.completion.category.border.top = base09
           c.colors.completion.category.border.bottom = base09
 
-          ## widget itself
           c.colors.completion.fg = [base07, base05, base0C]
           c.colors.completion.match.fg = base08
           c.colors.completion.even.bg = base01
@@ -67,7 +62,6 @@
           c.colors.completion.scrollbar.fg = base09
           c.colors.completion.scrollbar.bg = base03
 
-          ## item
           c.colors.completion.item.selected.fg = base03
           c.colors.completion.item.selected.match.fg = base00
           c.colors.completion.item.selected.bg = base09
@@ -86,6 +80,24 @@
           c.colors.hints.fg = base07
           c.colors.hints.bg = base01
           c.colors.hints.match.fg = base09
+
+          # keyhints
+          c.colors.keyhint.fg = base07
+          c.colors.keyhint.bg = base01
+          c.colors.keyhint.suffix.fg = base09
+
+          # messages
+          c.colors.messages.info.fg = base00
+          c.colors.messages.info.bg = base0B
+          c.colors.messages.info.border = base0B
+
+          c.colors.messages.warning.fg = base00
+          c.colors.messages.warning.bg = base0A
+          c.colors.messages.warning.border = base0A
+
+          c.colors.messages.error.fg = base00
+          c.colors.messages.error.bg = base08
+          c.colors.messages.error.border = base08
 
           # <<< START FLAVOURS >>>
           # did you really think i would set colors for ALL of them, MANUALLY??
