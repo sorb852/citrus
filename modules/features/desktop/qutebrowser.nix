@@ -82,6 +82,11 @@
           c.colors.contextmenu.selected.fg = base09
           c.colors.contextmenu.selected.bg = base02
 
+          # hints
+          c.colors.hints.fg = base07
+          c.colors.hints.bg = base01
+          c.colors.hints.match.fg = base09
+
           # <<< START FLAVOURS >>>
           # did you really think i would set colors for ALL of them, MANUALLY??
           # base16-qutebrowser (https://github.com/theova/base16-qutebrowser)
