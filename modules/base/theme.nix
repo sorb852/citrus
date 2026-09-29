@@ -62,7 +62,7 @@
       base0A = "#fdd41d";
       base0B = "#ceff1f";
       base0C = "#1fff57";
-      base0D = "#1fff75";
+      base0D = "#1fffa5";
       base0E = "#d8466f";
       base0F = "#ea3458";
 
