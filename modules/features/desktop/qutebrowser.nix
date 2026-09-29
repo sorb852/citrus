@@ -99,6 +99,8 @@
           c.colors.messages.error.bg = base08
           c.colors.messages.error.border = base08
 
+          c.colors.webpage.bg = base00
+
           # <<< START FLAVOURS >>>
           # did you really think i would set colors for ALL of them, MANUALLY??
           # base16-qutebrowser (https://github.com/theova/base16-qutebrowser)
