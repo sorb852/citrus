@@ -127,6 +127,13 @@
           c.colors.downloads.stop.fg = base01
           c.colors.downloads.stop.bg = base0B
 
+          # prompts
+          c.colors.prompts.fg = base07
+          c.colors.prompts.bg = base02
+          c.colors.prompts.selected.fg = base00 # i have no fucking clue on what this does
+          c.colors.prompts.selected.bg = base09 # i have no fucking clue on what this does
+          c.colors.prompts.border = f'0px solid {base02}'
+
           # <<< START FLAVOURS >>>
           # did you really think i would set colors for ALL of them, MANUALLY??
           # base16-qutebrowser (https://github.com/theova/base16-qutebrowser)
