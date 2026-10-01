@@ -1,5 +1,8 @@
 {
   flake.nixosModules.creative = { pkgs, ... }: {
-    environment.systemPackages = [ pkgs.arduino-ide ];
+    environment.systemPackages = [
+      pkgs.arduino-ide
+      pkgs.godot
+    ];
   };
 }
