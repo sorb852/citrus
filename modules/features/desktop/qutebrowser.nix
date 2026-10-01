@@ -118,6 +118,15 @@
           # webpage bg
           c.colors.webpage.bg = base00
 
+          # downloads
+          c.colors.downloads.bar.bg = base01
+          c.colors.downloads.error.fg = base01
+          c.colors.downloads.error.bg = base09
+          c.colors.downloads.start.fg = base01
+          c.colors.downloads.start.bg = base0A
+          c.colors.downloads.stop.fg = base01
+          c.colors.downloads.stop.bg = base0B
+
           # <<< START FLAVOURS >>>
           # did you really think i would set colors for ALL of them, MANUALLY??
           # base16-qutebrowser (https://github.com/theova/base16-qutebrowser)
