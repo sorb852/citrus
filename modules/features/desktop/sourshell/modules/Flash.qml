@@ -18,6 +18,7 @@ PanelWindow {
     IpcHandler {
         target: "freaky"
         function freakon() {
+            animation.running = false;
             animation.running = true;
         }
     }
