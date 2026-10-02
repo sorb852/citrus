@@ -57,7 +57,7 @@
           ({ lib, ... }: {
             vim.augroups = [
               { name = "highlight_yank"; }
-              { name = "diagnostic_error"; }
+              # { name = "diagnostic_error"; }
             ];
             vim.autocmds = [
               {
@@ -72,22 +72,22 @@
                 '';
               }
 
-              {
-                event = [ "DiagnosticChanged" ];
-                group = "diagnostic_error";
-                desc = "freaky";
-                pattern = [ "*" ];
-                callback = lib.mkLuaInline /* lua */ ''
-                  function(args)
-                    local errs = vim.diagnostic.get(args.buf, {
-                      severity = vim.diagnostic.severity.ERROR,
-                    })
-                    if #errs > 0 then
-                      vim.cmd("!quickshell ipc call freaky freakon")
-                    end
-                  end
-                '';
-              }
+              # {
+              #   event = [ "DiagnosticChanged" ];
+              #   group = "diagnostic_error";
+              #   desc = "freaky";
+              #   pattern = [ "*" ];
+              #   callback = lib.mkLuaInline /* lua */ ''
+              #     function(args)
+              #       local errs = vim.diagnostic.get(args.buf, {
+              #         severity = vim.diagnostic.severity.ERROR,
+              #       })
+              #       if #errs > 0 then
+              #         vim.cmd("!quickshell ipc call freaky freakon")
+              #       end
+              #     end
+              #   '';
+              # }
             ];
           })
           # base keymaps
