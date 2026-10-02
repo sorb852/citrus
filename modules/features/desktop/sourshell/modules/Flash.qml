@@ -6,6 +6,8 @@ import Quickshell.Io
 PanelWindow {
     visible: true
     focusable: false
+    mask: Region {}
+    WlrLayershell.keyboardFocus: KeyboardFocus.None
     anchors {
         top: true
         left: true
