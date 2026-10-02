@@ -16,6 +16,7 @@ ShellRoot {
             return true;
         }
         sourceComponent: Item {
+            Modules.Flash {}
             Modules.Bar {}
             Modules.Launcher {}
         }
