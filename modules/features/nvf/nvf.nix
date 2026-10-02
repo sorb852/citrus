@@ -104,6 +104,7 @@
               files.enable = true;
               pick.enable = true;
             };
+            vim.utility.motion.flash-nvim.enable = true;
             vim.keymaps = [
               {
                 mode = [ "n" ];
