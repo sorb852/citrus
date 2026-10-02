@@ -7,7 +7,6 @@ PanelWindow {
     visible: true
     focusable: false
     mask: Region {}
-    WlrLayershell.keyboardFocus: KeyboardFocus.None
     anchors {
         top: true
         left: true
@@ -43,6 +42,7 @@ PanelWindow {
             bottom: parent.bottom
             right: parent.right
         }
+        // she bad doe :eyes:
         source: "chick.jpg"
     }
 }

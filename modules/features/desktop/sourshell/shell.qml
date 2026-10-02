@@ -16,7 +16,9 @@ ShellRoot {
             return true;
         }
         sourceComponent: Item {
-            Modules.Flash {}
+            // NOTE: Always remember
+            // though srsly i should ask these guys for ideas this was kinda interesting
+            // Modules.Flash {}
             Modules.Bar {}
             Modules.Launcher {}
         }
