@@ -53,7 +53,9 @@
           config = {
             # TODO: make this host dependant
             user.name = "sorb852";
-            user.email = "reeldob34@gmail.com";
+            # apparently its a bad idea to have your email be public
+            # but like atp does it matter? theres like atleast 30 more repos with my email address intact (including this one)
+            user.email = "173787358+sorb852@users.noreply.github.com ";
             init.defaultBranch = "main";
           };
         };
