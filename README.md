@@ -73,3 +73,7 @@ sudo nixos-rebuild switch --flake .#Juicy
 # fun fact
 
 i made this rice or setup thing on an old ass laptop when i was at the camp, and realized i was missing out on peak. so long my low contrast bullshit dotfile
+
+# People i took "inspiration" from
+
+* [dacctal](https://www.youtube.com/@dacctal), i know he hates nixos but i dont care i love his orange aesthatic. im taking that
