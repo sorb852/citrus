@@ -21,6 +21,7 @@ ShellRoot {
             // Modules.Flash {}
             Modules.Bar {}
             Modules.Launcher {}
+            // Modules.ScreenshotOverlay {}
         }
     }
 }
