@@ -42,6 +42,7 @@
           }
 
           exec ${sourshell}
+          exec ${lib.getExe pkgs.steam} -silent
           exec ${lib.getExe pkgs.swayidle} -w \
                timeout 300 '${lib.getExe pkgs.swaylock} -f -c 000000' \
                timeout 600 'swaymsg "output * power off"' resume 'swaymsg "output * power on"' \
