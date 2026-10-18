@@ -262,8 +262,9 @@
                 '';
               }
               {
+                enable = true;
                 event = [ "FileType" ];
-                pattern = [ "*markdown" ];
+                pattern = [ "markdown" ];
                 desc = "Enable wrapping for markdown";
                 callback = lib.mkLuaInline /* lua */ ''
                   function()
